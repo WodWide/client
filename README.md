@@ -1,5 +1,5 @@
 ## WW Front End
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/WodWide/client/graphs/commit-activity)
+![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/WodWide/client/graphs/commit-activity)
 
 ### Contributors
 ![GitHub Contributors Image](https://contrib.rocks/image?repo=WodWide/client)
@@ -14,5 +14,9 @@
 
 <br/>
 <br/>
+
+### Style guide for development
+[Guide](https://grey-clutch-2a8.notion.site/WW-Code-guidelines-46b558065588453fa4075951e3c12156)
+
 
 ### Installation/Setup
