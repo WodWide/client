@@ -1,9 +1,5 @@
 ## WW Front End
-![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/WodWide/client/graphs/commit-activity)
-
-### Contributors
-![GitHub Contributors Image](https://contrib.rocks/image?repo=WodWide/client)
-
+![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)
 
 ### Application Tech Stack
 <img align="left" alt="Javascript"  width="50px" src="https://github.com/vscode-icons/vscode-icons/blob/master/icons/file_type_js_official.svg" /> 
