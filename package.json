@@ -7,8 +7,12 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
-    "lint": "eslint --ext .ts,.js,.vue ."
+    "lint": "eslint .",
+    "lint:staged": "eslint --ext \".js,.vue\" --ignore-path .gitignore --fix .",
+    "lint:prettier": "prettier --check .",
+    "lint:fix": "eslint  --fix .",
+    "format": "prettier --write .",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@nuxtjs/pwa": "^3.3.5",
@@ -27,6 +31,8 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-vue": "^7.12.1",
-    "prettier": "^2.3.2"
+    "husky": "^7.0.0",
+    "lint-staged": "^11.2.4",
+    "prettier": "2.4.1"
   }
 }
