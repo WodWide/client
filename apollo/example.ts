@@ -1,11 +1,12 @@
-import gql from 'graphql-tag'
+import gql from 'graphql-tag';
 
 export const getCharachters = gql`
-  query getCharachters{
-  characters{
-    results {
-      id
-      name
+  query getCharachters {
+    characters {
+      results {
+        id
+        name
       }
     }
-}`
+  }
+`;
