@@ -8,7 +8,7 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint:prettier": "prettier --check .",
-    "lint:quiet": "eslint --quiet \"*.{js,vue}\"",
+    "lint:quiet": "eslint --quiet --ext .ts,.js,.vue .",
     "format": "prettier --write .",
     "lint:fix": "eslint --fix --ext .ts,.js,.vue .",
     "lint": "eslint --ext .ts,.js,.vue .",
