@@ -8,13 +8,14 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint:prettier": "prettier --check .",
+    "lint:quiet": "eslint --quiet --ext .ts,.js,.vue .",
     "format": "prettier --write .",
     "lint:fix": "eslint --fix --ext .ts,.js,.vue .",
     "lint": "eslint --ext .ts,.js,.vue .",
     "prepare": "husky install",
     "cypress:open": "cypress open",
     "e2e": "cypress run",
-    "test": "jest"
+    "test": "jest --passWithNoTests"
   },
   "dependencies": {
     "@nuxtjs/apollo": "^4.0.1-rc.5",
