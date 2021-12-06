@@ -45,7 +45,7 @@
 
 <script>
 export default {
-  name: 'Login',
+  name: "Login",
   props: {
     source: String,
   },

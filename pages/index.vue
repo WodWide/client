@@ -90,7 +90,7 @@
   </v-row>
 </template>
 <script>
-import { characters } from '~/apollo/queries/characters';
+import { characters } from "~/apollo/queries/characters";
 export default {
   apollo: {
     characters: {
@@ -99,7 +99,7 @@ export default {
     },
   },
   head: {
-    title: 'Example with Apollo',
+    title: "Example with Apollo",
   },
   methods: {
     logchars() {
