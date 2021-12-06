@@ -9,12 +9,13 @@
             Login
           </v-card-title>
           <v-card-text>
-            <v-form>
+            <v-form action="POST" @submit.prevent="loginUser">
               <v-text-field
                 prepend-icon="mdi-account"
                 name="login"
                 label="Login"
                 type="text"
+                v-model="user.email"
               ></v-text-field>
               <v-text-field
                 id="password"
@@ -22,6 +23,7 @@
                 name="password"
                 label="Password"
                 type="password"
+                v-model="user.password"
               ></v-text-field>
             </v-form>
           </v-card-text>
@@ -46,8 +48,13 @@
 <script>
 export default {
   name: "Login",
-  props: {
-    source: String,
+  data() {
+    return {
+      user: {
+        email: "",
+        password: "",
+      },
+    };
   },
 };
 </script>
