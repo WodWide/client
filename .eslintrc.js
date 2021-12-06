@@ -5,24 +5,24 @@ module.exports = {
     node: true,
   },
   parserOptions: {
-    parser: '@typescript-eslint/parser',
+    parser: "@typescript-eslint/parser",
   },
   extends: [
-    'plugin:vue/recommended',
-    '@nuxtjs/eslint-config-typescript',
-    'prettier',
-    'plugin:prettier/recommended',
+    "plugin:vue/recommended",
+    "@nuxtjs/eslint-config-typescript",
+    "prettier",
+    "plugin:prettier/recommended",
   ],
-  plugins: ['vue'],
+  plugins: ["vue"],
   rules: {
-    'no-console': 'off',
-    'vue/max-attributes-per-line': 'off',
-    'prettier/prettier': [
-      'error',
+    "no-console": "off",
+    "vue/max-attributes-per-line": "off",
+    "prettier/prettier": [
+      "error",
       {
-        htmlWhitespaceSensitivity: 'ignore',
+        htmlWhitespaceSensitivity: "ignore",
         semi: true,
-        singleQuote: true,
+        singleQuote: false,
         printWidth: 80,
       },
     ],
