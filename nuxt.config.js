@@ -28,23 +28,15 @@ export default {
     // https://go.nuxtjs.dev/typescript
     "@nuxt/typescript-build",
     // https://go.nuxtjs.dev/vuetify
-<<<<<<< HEAD
-    '@nuxtjs/vuetify',
-=======
     "@nuxtjs/vuetify",
     "@nuxtjs/apollo",
->>>>>>> origin/main
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/pwa
-<<<<<<< HEAD
-    '@nuxtjs/pwa',
-    '@nuxtjs/apollo',
-=======
     "@nuxtjs/pwa",
->>>>>>> origin/main
+    "@nuxtjs/apollo",
   ],
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
