@@ -1,8 +1,0 @@
-query characters {
-  characters {
-    results {
-      id
-      name
-    }
-  }
-}

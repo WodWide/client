@@ -1,0 +1,27 @@
+
+  mutation tokenAuth($username: String!, $password: String!) {
+    tokenAuth(username: $username, password: $password) {
+      success
+      errors
+      token
+      refreshToken
+    }
+  }
+  mutation register(
+    $email: String!
+    $username: String!
+    $password1: String!
+    $password2: String!
+  ) {
+    createUser(
+      email: $email
+      username: $username
+      password1: $password1
+      password2: $password2
+    ) {
+      success
+      errors
+      token
+      refreshToken
+    }
+  }
