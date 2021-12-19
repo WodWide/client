@@ -1,0 +1,8 @@
+  query LoggedUser {
+    me {
+      username
+      id
+      username
+      email
+    }
+  }
