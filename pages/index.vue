@@ -73,13 +73,6 @@
           >
             Nuxt GitHub
           </a>
-          <div>
-            <ul>
-              <li v-for="char in characters.results" :key="char.id">
-                {{ char.name }}
-              </li>
-            </ul>
-          </div>
         </v-card-text>
         <v-card-actions>
           <v-spacer />
@@ -90,21 +83,5 @@
   </v-row>
 </template>
 <script>
-import { characters } from "~/apollo/queries/characters";
-export default {
-  apollo: {
-    characters: {
-      prefetch: true,
-      query: characters,
-    },
-  },
-  head: {
-    title: "Example with Apollo",
-  },
-  methods: {
-    logchars() {
-      console.log(characters);
-    },
-  },
-};
+export default {};
 </script>

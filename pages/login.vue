@@ -9,8 +9,9 @@
             Login
           </v-card-title>
           <v-card-text>
-            <v-form>
+            <v-form id="login-form" action="POST" @submit.prevent="loginUser">
               <v-text-field
+                v-model="user.email"
                 prepend-icon="mdi-account"
                 name="login"
                 label="Login"
@@ -18,6 +19,7 @@
               ></v-text-field>
               <v-text-field
                 id="password"
+                v-model="user.password"
                 prepend-icon="mdi-lock"
                 name="password"
                 label="Password"
@@ -26,13 +28,13 @@
             </v-form>
           </v-card-text>
           <v-card-actions class="justify-center">
-            <!-- <v-spacer></v-spacer> -->
             <v-btn
               class="mb-4 rounded-pill elevation-8"
               min-height="4em"
               min-width="20em"
               color="primary"
-              to="/"
+              type="submit"
+              form="login-form"
             >
               Login
             </v-btn>
@@ -44,10 +46,34 @@
 </template>
 
 <script>
+import { tokenAuth } from "~/apollo/mutations/UserMutation";
 export default {
   name: "Login",
-  props: {
-    source: String,
+  data() {
+    return {
+      user: {
+        email: "",
+        password: "",
+      },
+    };
+  },
+  methods: {
+    loginUser() {
+      this.$apollo
+        .mutate({
+          mutation: tokenAuth,
+          variables: {
+            username: this.user.email,
+            password: this.user.password,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((er) => {
+          console.log(er);
+        });
+    },
   },
 };
 </script>
