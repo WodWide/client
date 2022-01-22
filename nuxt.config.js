@@ -31,7 +31,6 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/typescript
     "@nuxt/typescript-build",
-    "@nuxtjs/apollo",
     "@nuxt/postcss8",
   ],
 
@@ -40,6 +39,7 @@ export default {
     // https://go.nuxtjs.dev/pwa
     "@nuxtjs/pwa",
     "@nuxtjs/apollo",
+    "nuxt-breakpoints",
   ],
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
