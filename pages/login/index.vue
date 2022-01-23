@@ -2,7 +2,7 @@
   <div
     class="login-page flex md:p-4 bg-gray-50 justify-center flex-col md:flex-row h-full"
   >
-    <div class="md:flex md:flex-col mb-8 md:mb-0">
+    <div class="md:flex md:flex-col">
       <nuxt-link to="/">
         <img src="/logo.png" alt="wod wide logo" class="w-24 mr-12" />
       </nuxt-link>
@@ -19,7 +19,7 @@
       <div
         class="inline-flex items-center justify-center py-4 text-gray-800 text-center"
       >
-        Login to start your journey as a crosstraining athletes
+        Login to start your journey as a cross-training athlete
       </div>
       <div class="mb-4">
         <label
@@ -61,8 +61,8 @@
           />
         </div>
       </div>
-      <div class="flex flex-col items-center">
-        <div class="flex w-full">
+      <div class="flex flex-col items-center w-auto">
+        <div class="flex w-full mx-16">
           <BaseToggle v-model="isCoach">Coach</BaseToggle>
           <a
             class="inline-flex justify-end w-full font-bold text-sm text-blue text-gray-800 hover:text-gray-600"
@@ -86,6 +86,7 @@
   </div>
 </template>
 <script lang="ts">
+// TODO add header element for SEO and enable sign in button and errors
 import Vue from "vue";
 import Logo from "@/components/Logo.vue";
 import BaseButton from "@/components/common/BaseButton.vue";
