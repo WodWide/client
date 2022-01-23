@@ -68,12 +68,7 @@
         >
           Forgot Password?
         </a>
-        <button
-          class="bg-gray-900 hover:bg-gray-700 text-white font-bold py-3 px-10 rounded-full mt-4 text-lg"
-          type="button"
-        >
-          Sign In
-        </button>
+        <BaseButton class="rounded-full mt-4 text-lg">Sign In</BaseButton>
       </div>
       <div class="flex items-center justify-center pt-8">
         <span class="text-gray-800">Dont have an account?</span>
@@ -89,9 +84,10 @@
 <script lang="ts">
 import Vue from "vue";
 import Logo from "@/components/Logo.vue";
+import BaseButton from "@/components/common/BaseButton.vue";
 
 export default Vue.extend({
-  components: { Logo },
+  components: { Logo, BaseButton },
 });
 </script>
 <style lang="scss">
