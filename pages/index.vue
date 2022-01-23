@@ -33,7 +33,7 @@
             <nuxt-link to="/login" class="flex justify-end my-2 text-sm">
               <span class="index-page__button text-sm">Athlete &#8594;</span>
             </nuxt-link>
-            <nuxt-link to="/signup" class="flex justify-end my-2 text-sm">
+            <nuxt-link to="/login/coach" class="flex justify-end my-2 text-sm">
               <span class="index-page__button text-sm">Coach &#8594;</span>
             </nuxt-link>
           </div>
@@ -41,10 +41,10 @@
       </transition>
     </nav>
     <div class="flex flex-col justify-center items-center mt-8 lg:mt-16 h-full">
-      <div class="index-page__title flex">
+      <logo class="index-page__title">
         <div class="text-black">Wod</div>
         <div class="text-gray-500">Wide</div>
-      </div>
+      </logo>
       <div class="index-page__icons flex my-12">
         <img src="/icon-park_rope-skipping-one.svg" alt="skipping rope" />
         <img src="/healthicons_exercise.svg" alt="dumbbell" />
@@ -81,8 +81,10 @@
 <script lang="ts">
 import Vue from "vue";
 import "nuxt-breakpoints";
+import Logo from "@/components/Logo.vue";
 
 export default Vue.extend({
+  components: { Logo },
   transition: "fade",
   data() {
     return {
@@ -117,7 +119,7 @@ export default Vue.extend({
   }
   &__title {
     div {
-      @apply text-6xl font-semibold mx-2;
+      @apply text-6xl;
     }
   }
   &__icons {
