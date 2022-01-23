@@ -31,22 +31,19 @@
           </div>
           <div class="flex flex-1 justify-end flex-col lg:flex-row">
             <nuxt-link to="/login" class="flex justify-end my-2 text-sm">
-              <BaseButton class="index-page__button">
-                Athlete &#8594;
-              </BaseButton>
+              <BaseButton class="index-page__button">Login &#8594;</BaseButton>
             </nuxt-link>
-            <nuxt-link to="/login/coach" class="flex justify-end my-2 text-sm">
-              <BaseButton class="index-page__button">Coach &#8594;</BaseButton>
+            <nuxt-link to="/signup" class="flex justify-end my-2 text-sm">
+              <BaseButton class="index-page__button">
+                Sign up &#8594;
+              </BaseButton>
             </nuxt-link>
           </div>
         </div>
       </transition>
     </nav>
     <div class="flex flex-col justify-center items-center mt-8 lg:mt-16 h-full">
-      <logo class="index-page__title">
-        <div class="text-black">Wod</div>
-        <div class="text-gray-500">Wide</div>
-      </logo>
+      <logo class="text-6xl" />
       <div class="index-page__icons flex my-12">
         <img src="/icon-park_rope-skipping-one.svg" alt="skipping rope" />
         <img src="/healthicons_exercise.svg" alt="dumbbell" />
@@ -57,7 +54,7 @@
       </span>
       <div class="flex justify-center items-center mt-12 lg:mt-16 z-50">
         <nuxt-link to="/signup">
-          <BaseButton class="text-sm lg:text-lg mr-2">Sign up</BaseButton>
+          <BaseButton class="text-sm lg:text-lg mr-2">Join us</BaseButton>
         </nuxt-link>
         <nuxt-link to="/about">
           <span
@@ -114,11 +111,6 @@ export default Vue.extend({
     @apply py-2 px-4 mx-4 rounded text-sm;
     @screen lg {
       @apply text-lg py-3 px-5;
-    }
-  }
-  &__title {
-    div {
-      @apply text-6xl;
     }
   }
   &__icons {

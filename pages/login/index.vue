@@ -24,9 +24,9 @@
       <div class="mb-4">
         <label
           class="block text-grey-darker text-sm font-bold mb-2"
-          for="username"
+          for="email"
         >
-          Username
+          Email
         </label>
         <div class="inline-flex w-full items-center justify-center">
           <font-awesome-icon
@@ -34,7 +34,7 @@
             class="text-2xl text-gray-700"
           />
           <input
-            id="username"
+            id="email"
             class="shadow appearance-none border rounded-lg w-full py-2 px-3 mx-4 text-grey-darker"
             type="text"
             placeholder="Username"
@@ -62,12 +62,16 @@
         </div>
       </div>
       <div class="flex flex-col items-center">
-        <a
-          class="inline-flex justify-end w-full font-bold text-sm text-blue text-gray-800 hover:text-gray-600"
-          href="#"
-        >
-          Forgot Password?
-        </a>
+        <div class="flex w-full">
+          <BaseToggle v-model="isCoach">Coach</BaseToggle>
+          <a
+            class="inline-flex justify-end w-full font-bold text-sm text-blue text-gray-800 hover:text-gray-600"
+            href="#"
+          >
+            Forgot Password?
+          </a>
+        </div>
+
         <BaseButton class="rounded-full mt-4 text-lg">Sign In</BaseButton>
       </div>
       <div class="flex items-center justify-center pt-8">
@@ -85,9 +89,17 @@
 import Vue from "vue";
 import Logo from "@/components/Logo.vue";
 import BaseButton from "@/components/common/BaseButton.vue";
+import BaseToggle from "@/components/common/BaseToggle.vue";
 
 export default Vue.extend({
-  components: { Logo, BaseButton },
+  components: { Logo, BaseButton, BaseToggle },
+  data() {
+    return {
+      isCoach: false,
+      email: "",
+      password: "",
+    };
+  },
 });
 </script>
 <style lang="scss">
