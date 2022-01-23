@@ -32,6 +32,7 @@ export default {
     // https://go.nuxtjs.dev/typescript
     "@nuxt/typescript-build",
     "@nuxt/postcss8",
+    "@nuxtjs/fontawesome",
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -41,6 +42,13 @@ export default {
     "@nuxtjs/apollo",
     "nuxt-breakpoints",
   ],
+
+  fontawesome: {
+    icons: {
+      solid: true,
+      regular: true,
+    },
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
