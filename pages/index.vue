@@ -89,6 +89,19 @@ export default Vue.extend({
       showMenu: false,
     };
   },
+  head() {
+    return {
+      title: "Home",
+      meta: [
+        {
+          hid: "home-page",
+          name: "Home page",
+          content:
+            "Home page for WOD WIDE. A social platform for cross training athletes",
+        },
+      ],
+    };
+  },
   computed: {
     isMobile() {
       return this.$breakpoints.sMd;
