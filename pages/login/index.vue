@@ -19,7 +19,7 @@
       <div
         class="inline-flex items-center justify-center py-4 text-gray-800 text-center"
       >
-        Login to start your journey as a cross-training athlete
+        Login to start your journey as a cross-training athlete/coach
       </div>
       <div class="mb-4">
         <label
@@ -99,6 +99,19 @@ export default Vue.extend({
       isCoach: false,
       email: "",
       password: "",
+    };
+  },
+  head() {
+    return {
+      title: "Login",
+      meta: [
+        {
+          hid: "login-page",
+          name: "Login page",
+          content:
+            "Login page for WOD WIDE. Login to start your jounrey as a cross-training athlete",
+        },
+      ],
     };
   },
 });
