@@ -40,6 +40,7 @@ export default {
     "@nuxtjs/pwa",
     "@nuxtjs/apollo",
     "nuxt-breakpoints",
+    "@nuxtjs/proxy",
   ],
 
   fontawesome: {
@@ -55,13 +56,16 @@ export default {
       lang: "en",
     },
   },
+
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: "http://127.0.0.1:8000/graphql",
+        httpEndpoint: "http://localhost:8000/graphql",
       },
     },
   },
+
+  proxy: ["https://localhost:8000/graphql"],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
