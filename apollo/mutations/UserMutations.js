@@ -1,4 +1,6 @@
+import { gql } from "graphql-tag";
 
+export const LOGIN_USER = gql`
   mutation tokenAuth($username: String!, $password: String!) {
     tokenAuth(username: $username, password: $password) {
       success
@@ -7,6 +9,9 @@
       refreshToken
     }
   }
+`;
+
+export const REGISTER_USER = gql`
   mutation register(
     $email: String!
     $username: String!
@@ -25,3 +30,4 @@
       refreshToken
     }
   }
+`;

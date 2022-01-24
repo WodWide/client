@@ -2,7 +2,7 @@
   <div
     class="login-page flex md:p-4 bg-gray-50 justify-center flex-col md:flex-row h-full"
   >
-    <div class="md:flex md:flex-col">
+    <div class="md:flex md:flex-col md:w-2/3">
       <nuxt-link to="/">
         <img src="/logo.png" alt="wod wide logo" class="w-24 mr-12" />
       </nuxt-link>
@@ -24,9 +24,9 @@
       <div class="mb-4">
         <label
           class="block text-grey-darker text-sm font-bold mb-2"
-          for="email"
+          for="username"
         >
-          Email
+          Username
         </label>
         <div class="inline-flex w-full items-center justify-center">
           <font-awesome-icon
@@ -34,10 +34,12 @@
             class="text-2xl text-gray-700"
           />
           <input
-            id="email"
+            id="username"
+            v-model="username"
             class="shadow appearance-none border rounded-lg w-full py-2 px-3 mx-4 text-grey-darker"
             type="text"
             placeholder="Username"
+            @keyup.enter="signIn"
           />
         </div>
       </div>
@@ -55,11 +57,19 @@
           />
           <input
             id="password"
+            v-model="password"
             class="shadow appearance-none border rounded-lg w-full py-2 px-3 mx-4 text-grey-darker"
             type="password"
             placeholder="******************"
+            @keyup.enter="signIn"
           />
         </div>
+      </div>
+      <div
+        v-if="error"
+        class="inline-flex items-center justify-center text-center mb-4 text-red-800"
+      >
+        {{ error }}
       </div>
       <div class="flex flex-col items-center w-auto">
         <div class="flex w-full mx-16">
@@ -72,7 +82,9 @@
           </a>
         </div>
 
-        <BaseButton class="rounded-full mt-4 text-lg">Sign In</BaseButton>
+        <BaseButton class="rounded-full mt-4 text-lg" @click.native="signIn">
+          Sign In
+        </BaseButton>
       </div>
       <div class="flex items-center justify-center pt-8">
         <span class="text-gray-800">Dont have an account?</span>
@@ -86,18 +98,19 @@
   </div>
 </template>
 <script lang="ts">
-// TODO add header element for SEO and enable sign in button and errors
 import Vue from "vue";
 import Logo from "@/components/Logo.vue";
 import BaseButton from "@/components/common/BaseButton.vue";
 import BaseToggle from "@/components/common/BaseToggle.vue";
+import { LOGIN_USER } from "@/apollo/mutations/UserMutations";
 
 export default Vue.extend({
   components: { Logo, BaseButton, BaseToggle },
   data() {
     return {
       isCoach: false,
-      email: "",
+      error: "",
+      username: "",
       password: "",
     };
   },
@@ -113,6 +126,42 @@ export default Vue.extend({
         },
       ],
     };
+  },
+  created() {
+    if (this.$store.state.user.authStatus) {
+      this.$router.push("/");
+    }
+  },
+  methods: {
+    signIn() {
+      if (this.username === "" || this.password === "") {
+        this.error = "Please fill in all fields";
+      } else {
+        try {
+          this.$apollo
+            .mutate({
+              mutation: LOGIN_USER,
+              variables: {
+                username: this.username,
+                password: this.password,
+              },
+            })
+            .then((res: any) => {
+              res.data.tokenAuth.success
+                ? this.$store.dispatch(
+                    "user/setToken",
+                    res.data.tokenAuth.token
+                  ) && this.$router.push("/")
+                : (this.error =
+                    "Error: " +
+                    res.data.tokenAuth.errors.nonFieldErrors[0].message);
+            });
+        } catch (e) {
+          console.log(e);
+          this.error = "There was an error logging in. Try again later.";
+        }
+      }
+    },
   },
 });
 </script>
