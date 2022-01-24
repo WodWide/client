@@ -27,7 +27,7 @@ export default Vue.extend({
       get(): Boolean {
         return this.value;
       },
-      set(value) {
+      set(value: Boolean) {
         this.$emit("input", value);
       },
     },
