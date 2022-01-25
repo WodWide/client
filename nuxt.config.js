@@ -1,8 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: "%s - Wide",
-    title: "Wod",
+    titleTemplate: "%s - Wod Wide",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -32,6 +31,7 @@ export default {
     // https://go.nuxtjs.dev/typescript
     "@nuxt/typescript-build",
     "@nuxt/postcss8",
+    "@nuxtjs/fontawesome",
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -40,7 +40,15 @@ export default {
     "@nuxtjs/pwa",
     "@nuxtjs/apollo",
     "nuxt-breakpoints",
+    "@nuxtjs/proxy",
   ],
+
+  fontawesome: {
+    icons: {
+      solid: true,
+      regular: true,
+    },
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
@@ -48,13 +56,16 @@ export default {
       lang: "en",
     },
   },
+
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: "http://127.0.0.1:8000/graphql",
+        httpEndpoint: "http://localhost:8000/graphql",
       },
     },
   },
+
+  proxy: ["https://localhost:8000/graphql"],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

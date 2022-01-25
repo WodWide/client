@@ -21,7 +21,11 @@
     "*.{js,vue}": "eslint"
   },
   "dependencies": {
+    "@fortawesome/free-regular-svg-icons": "^5.15.4",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@nuxtjs/apollo": "^4.0.1-rc.5",
+    "@nuxtjs/fontawesome": "^1.1.2",
+    "@nuxtjs/proxy": "^2.1.0",
     "@nuxtjs/pwa": "^3.3.5",
     "core-js": "^3.15.1",
     "graphql-tag": "^2.12.5",

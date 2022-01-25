@@ -31,20 +31,19 @@
           </div>
           <div class="flex flex-1 justify-end flex-col lg:flex-row">
             <nuxt-link to="/login" class="flex justify-end my-2 text-sm">
-              <span class="index-page__button text-sm">Athlete &#8594;</span>
+              <BaseButton class="index-page__button">Login &#8594;</BaseButton>
             </nuxt-link>
             <nuxt-link to="/signup" class="flex justify-end my-2 text-sm">
-              <span class="index-page__button text-sm">Coach &#8594;</span>
+              <BaseButton class="index-page__button">
+                Sign up &#8594;
+              </BaseButton>
             </nuxt-link>
           </div>
         </div>
       </transition>
     </nav>
     <div class="flex flex-col justify-center items-center mt-8 lg:mt-16 h-full">
-      <div class="index-page__title flex">
-        <div class="text-black">Wod</div>
-        <div class="text-gray-500">Wide</div>
-      </div>
+      <logo class="text-6xl" />
       <div class="index-page__icons flex my-12">
         <img src="/icon-park_rope-skipping-one.svg" alt="skipping rope" />
         <img src="/healthicons_exercise.svg" alt="dumbbell" />
@@ -55,11 +54,7 @@
       </span>
       <div class="flex justify-center items-center mt-12 lg:mt-16 z-50">
         <nuxt-link to="/signup">
-          <span
-            class="bg-black hover:bg-gray-800 text-white font-bold py-4 px-9 rounded text-sm lg:text-lg mr-2"
-          >
-            Sign up
-          </span>
+          <BaseButton class="text-sm lg:text-lg mr-2">Join us</BaseButton>
         </nuxt-link>
         <nuxt-link to="/about">
           <span
@@ -81,8 +76,11 @@
 <script lang="ts">
 import Vue from "vue";
 import "nuxt-breakpoints";
+import Logo from "@/components/Logo.vue";
+import BaseButton from "@/components/common/BaseButton.vue";
 
 export default Vue.extend({
+  components: { Logo, BaseButton },
   transition: "fade",
   data() {
     return {
@@ -110,14 +108,9 @@ export default Vue.extend({
     @apply hover:text-gray-400 flex justify-end my-1 text-lg mx-4;
   }
   &__button {
-    @apply bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 mx-4 rounded text-sm;
+    @apply py-2 px-4 mx-4 rounded text-sm;
     @screen lg {
       @apply text-lg py-3 px-5;
-    }
-  }
-  &__title {
-    div {
-      @apply text-6xl font-semibold mx-2;
     }
   }
   &__icons {
