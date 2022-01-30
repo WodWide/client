@@ -18,6 +18,9 @@ describe("index.vue", () => {
       $breakpoints: {},
     };
   });
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
   describe("when component is mounted", () => {
     test("should render nav tag", () => {
       const wrapper = shallowMount(HomePage, { stubs, mocks });
