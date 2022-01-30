@@ -1,6 +1,9 @@
 <template>
   <div class="index-page overflow-hidden">
-    <nav class="flex items-center flex-wrap px-2 lg:px-8 py-4">
+    <nav
+      id="index-page-navbar"
+      class="flex items-center flex-wrap px-2 lg:px-8 py-4"
+    >
       <div class="basis-1/4">
         <img src="/logo.png" width="100" />
       </div>
@@ -42,14 +45,17 @@
         </div>
       </transition>
     </nav>
-    <div class="flex flex-col justify-center items-center mt-8 lg:mt-16 h-full">
+    <div
+      id="index-page-body"
+      class="flex flex-col justify-center items-center mt-8 lg:mt-16 h-full"
+    >
       <logo class="text-6xl" />
       <div class="index-page__icons flex my-12">
         <img src="/icon-park_rope-skipping-one.svg" alt="skipping rope" />
         <img src="/healthicons_exercise.svg" alt="dumbbell" />
         <img src="/iconoir_rings.svg" alt="gymnastic rings" />
       </div>
-      <span class="text-center text-lg">
+      <span id="index-page-description" class="text-center text-lg">
         A social platform for cross training athletes
       </span>
       <div class="flex justify-center items-center mt-12 lg:mt-16 z-50">
@@ -80,6 +86,7 @@ import Logo from "@/components/Logo.vue";
 import BaseButton from "@/components/common/BaseButton.vue";
 
 export default Vue.extend({
+  name: "HomePage",
   components: { Logo, BaseButton },
   transition: "fade",
   data() {
