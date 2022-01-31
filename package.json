@@ -21,6 +21,7 @@
     "*.{js,vue}": "eslint"
   },
   "dependencies": {
+    "@babel/preset-typescript": "^7.16.7",
     "@fortawesome/free-regular-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@nuxtjs/apollo": "^4.0.1-rc.5",
