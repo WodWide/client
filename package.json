@@ -13,8 +13,8 @@
     "lint:fix": "eslint --fix --ext .ts,.js,.vue .",
     "lint": "eslint --ext .ts,.js,.vue .",
     "prepare": "husky install",
-    "cypress:open": "cypress open",
-    "e2e": "cypress run",
+    "e2e": "NODE_ENV=test start-server-and-test dev http://localhost:3000 cy:run",
+    "cy:run": "cypress run",
     "test": "jest --passWithNoTests"
   },
   "lint-staged": {
@@ -58,6 +58,7 @@
     "lint-staged": "^10.5.4",
     "postcss": "^8.3.5",
     "prettier": "^2.3.2",
+    "start-server-and-test": "^1.14.0",
     "ts-jest": "^27.0.3",
     "typescript": "^4.1.0",
     "vue-jest": "^3.0.4"
