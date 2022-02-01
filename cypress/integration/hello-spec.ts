@@ -4,6 +4,6 @@ describe("App", function () {
   });
 
   it("renders the app", function () {
-    cy.get(".App-link").should("contain", "Learn React");
+    cy.get(".index-page").should("exist");
   });
 });
