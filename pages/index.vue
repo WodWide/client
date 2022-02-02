@@ -60,10 +60,13 @@
       </span>
       <div class="flex justify-center items-center mt-12 lg:mt-16 z-50">
         <nuxt-link to="/signup">
-          <BaseButton class="text-sm lg:text-lg mr-2">Join us</BaseButton>
+          <BaseButton id="index-page-join" class="text-sm lg:text-lg mr-2">
+            Join us
+          </BaseButton>
         </nuxt-link>
         <nuxt-link to="/about">
           <span
+            id="index-page-learn-more"
             class="bg-white hover:bg-gray-100 text-black font-bold py-3 px-9 rounded border-solid border-black border-2 text-sm lg:text-lg"
           >
             Learn More
