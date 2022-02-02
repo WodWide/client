@@ -1,0 +1,12 @@
+{
+  "data": {
+    "tokenAuth": {
+      "success": true,
+      "errors": null,
+      "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImdpYXBhQGF1dG9tYXRpb24uY29tIiwiZXhwIjoxNjM3OTM3NDgyLCJvcmlnSWF0IjoxNjM3OTM3MTgyfQ.Jq--3vuMYKWLsUOeGH8VJzOp_ZrYhNR8uFz-DoN6E2M",
+      "refreshToken": "7a82608446e4f34707b53c45a71d05ffb78ed8d0",
+      "unarchiving": false,
+      "__typename": "ObtainJSONWebToken"
+    }
+  }
+}
