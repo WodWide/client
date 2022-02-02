@@ -70,6 +70,7 @@
       </div>
       <div
         v-if="error"
+        id="login-page-error"
         class="inline-flex items-center justify-center text-center mb-4 text-red-800"
       >
         {{ error }}
@@ -85,15 +86,22 @@
           </a>
         </div>
 
-        <BaseButton class="rounded-full mt-4 text-lg" @click.native="signIn">
+        <BaseButton
+          id="login-page-submit"
+          class="rounded-full mt-4 text-lg"
+          @click.native="signIn"
+        >
           Sign In
         </BaseButton>
       </div>
       <div class="flex items-center justify-center pt-8">
         <span class="text-gray-800">Dont have an account?</span>
-        <nuxt-link to="/register">
-          <span class="ml-2 text-gray-500 hover:text-gray-400">
-            Register here
+        <nuxt-link to="/signup">
+          <span
+            id="login-page-signup-button"
+            class="ml-2 text-gray-500 hover:text-gray-400"
+          >
+            Sign up here
           </span>
         </nuxt-link>
       </div>
