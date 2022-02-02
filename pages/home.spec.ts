@@ -10,7 +10,6 @@ describe("index.vue", () => {
       BaseButton: {
         name: "BaseButton",
         template: `<div class="base-button-template"><slot/></div>`,
-        props: ["theme"],
       },
       NuxtLink: RouterLinkStub,
     };

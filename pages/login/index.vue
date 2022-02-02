@@ -17,6 +17,7 @@
     <div class="login-page__wrapper">
       <logo class="text-6xl flex justify-center py-4" />
       <div
+        id="login-page-description"
         class="inline-flex items-center justify-center py-4 text-gray-800 text-center"
       >
         Login to start your journey as a cross-training athlete/coach
@@ -30,6 +31,7 @@
         </label>
         <div class="inline-flex w-full items-center justify-center">
           <font-awesome-icon
+            id="font-awesome-icon"
             :icon="['fas', 'user']"
             class="text-2xl text-gray-700"
           />
@@ -52,6 +54,7 @@
         </label>
         <div class="inline-flex w-full items-center justify-center">
           <font-awesome-icon
+            id="font-awesome-icon"
             :icon="['fas', 'lock']"
             class="text-2xl text-gray-700"
           />
