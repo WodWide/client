@@ -15,7 +15,7 @@
     "prepare": "husky install",
     "e2e": "NODE_ENV=test start-server-and-test dev http://localhost:3000 cy:run",
     "cy:run": "cypress run",
-    "test": "jest --passWithNoTests"
+    "test": "jest"
   },
   "lint-staged": {
     "*.{js,vue}": "eslint"
