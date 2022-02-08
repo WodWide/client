@@ -7,6 +7,11 @@ export const LOGIN_USER = gql`
       errors
       token
       refreshToken
+      user {
+        id
+        username
+        email
+      }
     }
   }
 `;
