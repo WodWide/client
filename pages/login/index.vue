@@ -158,20 +158,29 @@ export default Vue.extend({
               },
             })
             .then((res: any) => {
-              res.data.tokenAuth.success
-                ? this.$store.dispatch(
-                    "user/setToken",
-                    res.data.tokenAuth.token
-                  ) && this.$router.push("/")
-                : (this.error =
-                    "Error: " +
-                    res.data.tokenAuth.errors.nonFieldErrors[0].message);
+              this.storeInformation(res);
             });
         } catch (e) {
           console.log(e);
           this.error = "There was an error logging in. Try again later.";
         }
       }
+    },
+    storeInformation(response: any) {
+      if (response.data.tokenAuth.success) {
+        this.setUserToken(response.data.tokenAuth.token);
+        this.setUserDetails(response.data.tokenAuth.user);
+        this.$router.push("/");
+      } else {
+        this.error =
+          "Error: " + response.data.tokenAuth.errors.nonFieldErrors[0].message;
+      }
+    },
+    setUserToken(token: string) {
+      this.$store.dispatch("user/setToken", token);
+    },
+    setUserDetails(user: any) {
+      this.$store.dispatch("user/setUser", user);
     },
   },
 });
