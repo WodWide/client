@@ -1,6 +1,6 @@
 <template>
   <button
-    class="bg-gray-900 hover:bg-gray-700 text-white font-bold py-3 px-8 rounded"
+    class="bg-gray-900 hover:bg-gray-700 text-white font-bold py-3 px-8 rounded-lg"
   >
     <slot />
   </button>
