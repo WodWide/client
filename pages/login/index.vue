@@ -110,6 +110,7 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
+import bcrypt from "bcryptjs";
 import Logo from "@/components/Logo.vue";
 import BaseButton from "@/components/common/BaseButton.vue";
 import BaseToggle from "@/components/common/BaseToggle.vue";
@@ -148,13 +149,14 @@ export default Vue.extend({
       if (this.username === "" || this.password === "") {
         this.error = "Please fill in all fields";
       } else {
+        const hashedPassword = this.encryptPassword(this.password);
         try {
           this.$apollo
             .mutate({
               mutation: LOGIN_USER,
               variables: {
                 username: this.username,
-                password: this.password,
+                password: hashedPassword,
               },
             })
             .then((res: any) => {
@@ -165,6 +167,10 @@ export default Vue.extend({
           this.error = "There was an error logging in. Try again later.";
         }
       }
+    },
+    encryptPassword(password: string) {
+      const salt = bcrypt.genSaltSync(10);
+      return bcrypt.hashSync(password, salt);
     },
     storeInformation(response: any) {
       if (response.data.tokenAuth.success) {
