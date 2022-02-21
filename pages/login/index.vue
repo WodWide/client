@@ -110,14 +110,16 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
-import bcrypt from "bcryptjs";
 import Logo from "@/components/Logo.vue";
 import BaseButton from "@/components/common/BaseButton.vue";
 import BaseToggle from "@/components/common/BaseToggle.vue";
 import { LOGIN_USER } from "@/apollo/mutations/UserMutations";
+import mixins from "@/mixins/mixins";
 
 export default Vue.extend({
   components: { Logo, BaseButton, BaseToggle },
+  mixins: [mixins],
+
   data() {
     return {
       isCoach: false,
@@ -145,11 +147,13 @@ export default Vue.extend({
     }
   },
   methods: {
-    signIn() {
+    signIn(): void {
       if (this.username === "" || this.password === "") {
         this.error = "Please fill in all fields";
       } else {
-        const hashedPassword = this.encryptPassword(this.password);
+        const hashedPassword: string = mixins.methods.encryptPassword(
+          this.password
+        );
         try {
           this.$apollo
             .mutate({
@@ -167,10 +171,6 @@ export default Vue.extend({
           this.error = "There was an error logging in. Try again later.";
         }
       }
-    },
-    encryptPassword(password: string) {
-      const salt = bcrypt.genSaltSync(10);
-      return bcrypt.hashSync(password, salt);
     },
     storeInformation(response: any) {
       if (response.data.tokenAuth.success) {
