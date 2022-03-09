@@ -21,7 +21,7 @@ export default {
   css: ["@/assets/css/main.css"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: ["~/plugins/validations.js"],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -69,6 +69,7 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    transpile: ["vee-validate/dist/rules"],
     postcss: { plugins: { tailwindcss: {}, autoprefixer: {} } },
     extend(config, ctx) {
       // Run ESLint on save
