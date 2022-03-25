@@ -7,7 +7,7 @@ export const state = () => ({
 export const getters = {
   token: (state: { token: string }) => state.token,
   authStatus: (state: { authStatus: Boolean }) => state.authStatus,
-  user: (state: { user: any }) => state.user,
+  user: (state: { user: Object }) => state.user,
 };
 
 export const mutations = {
