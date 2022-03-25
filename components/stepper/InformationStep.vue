@@ -2,7 +2,7 @@
   <div class="information-step flex items-center flex-col">
     <div class="text-4xl">Information</div>
     <div class="information-step__body w-fit mt-12">
-      <ValidationObserver v-slot="{ valid, dirty }">
+      <ValidationObserver v-slot="{ valid }">
         <div class="flex items-center w-full mt-8 my-12">
           <font-awesome-icon
             id="font-awesome-icon"
@@ -17,7 +17,7 @@
             rules="required"
           >
             <input
-              v-model="firstName"
+              v-model="user.firstName"
               type="text"
               :class="[
                 'information-step__input',
@@ -34,7 +34,7 @@
             rules="required"
           >
             <input
-              v-model="lastName"
+              v-model="user.lastName"
               type="text"
               :class="[
                 'information-step__input',
@@ -59,7 +59,7 @@
               rules="required|email"
             >
               <input
-                v-model="email"
+                v-model="user.email"
                 type="text"
                 :class="[
                   'information-step__input',
@@ -84,7 +84,7 @@
               rules="required|password"
             >
               <input
-                v-model="password"
+                v-model="user.password"
                 type="password"
                 :class="[
                   'information-step__input',
@@ -98,8 +98,8 @@
         </div>
         <div class="information-step__footer flex justify-end mt-12 -mb-8">
           <BaseButton
-            :class="{ 'information-step__button--disabled': !valid || !dirty }"
-            @click.native="$emit('increase-step')"
+            :class="{ 'information-step__button--disabled': !valid }"
+            @click.native="increaseStep"
           >
             Next
           </BaseButton>
@@ -123,11 +123,23 @@ export default Vue.extend({
   },
   data() {
     return {
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
+      user: {
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+      },
     };
+  },
+  created() {
+    const storeUser = { ...this.$store.getters["user/user"] };
+    Object.entries(storeUser) && (this.user = storeUser);
+  },
+  methods: {
+    increaseStep() {
+      this.$store.dispatch("user/setUser", this.user);
+      this.$emit("increase-step");
+    },
   },
 });
 </script>

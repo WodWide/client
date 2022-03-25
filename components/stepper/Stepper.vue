@@ -69,7 +69,6 @@ export default Vue.extend({
     },
     submitForm() {
       this.$emit("submit");
-      console.log("submit");
     },
     isActiveStep(index: number): boolean {
       return this.currentStep === index - 1;
