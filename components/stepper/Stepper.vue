@@ -13,6 +13,7 @@
       :is="steps[currentStep].component"
       class="my-12"
       @increase-step="increaseStep()"
+      @decrease-step="decreaseStep()"
     />
   </div>
 </template>
@@ -67,8 +68,8 @@ export default Vue.extend({
       this.currentStep -= 1;
     },
     submitForm() {
-      console.log("test");
       this.$emit("submit");
+      console.log("submit");
     },
     isActiveStep(index: number): boolean {
       return this.currentStep === index - 1;
