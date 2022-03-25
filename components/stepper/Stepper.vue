@@ -9,28 +9,16 @@
         :is-last="isLast(index)"
       />
     </div>
-    <component :is="steps[currentStep].component" class="my-12" />
-    <div class="stepper__footer flex px-4 pb-2">
-      <div class="stepper__footer--previous flex-1">
-        <BaseButton
-          :class="{ 'stepper__button--disabled': isButtonDisabled }"
-          @click.native="decreaseStep"
-        >
-          Previous
-        </BaseButton>
-      </div>
-      <div class="stepper__fotter--next">
-        <BaseButton @click.native="increaseStep">
-          {{ isLastStep ? "Finish" : "Next" }}
-        </BaseButton>
-      </div>
-    </div>
+    <component
+      :is="steps[currentStep].component"
+      class="my-12"
+      @increase-step="increaseStep()"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import BaseButton from "../common/BaseButton.vue";
 import StepIcon from "./StepIcon.vue";
 import InformationStep from "./InformationStep.vue";
 import ProfileStep from "./ProfileStep.vue";
@@ -46,7 +34,6 @@ export default Vue.extend({
   components: {
     InformationStep,
     ProfileStep,
-    BaseButton,
     StepIcon,
   },
   data() {
@@ -74,7 +61,7 @@ export default Vue.extend({
   },
   methods: {
     increaseStep() {
-      this.isLastStep ? this.submitForm() : (this.currentStep += 1);
+      this.isLastStep ? this.submitForm() : this.currentStep++;
     },
     decreaseStep() {
       this.currentStep -= 1;
@@ -95,12 +82,4 @@ export default Vue.extend({
   },
 });
 </script>
-<style lang="scss">
-.stepper {
-  &__button {
-    &--disabled {
-      @apply pointer-events-none rounded-lg opacity-25;
-    }
-  }
-}
-</style>
+<style lang="scss"></style>
