@@ -1,5 +1,7 @@
 <template>
-  <div class="stepper p-4 shadow-lg rounded-lg flex flex-col w-1/2 mt-24">
+  <div
+    class="stepper p-4 shadow-lg rounded-lg flex flex-col w-full lg:w-1/2 lg:mt-24 h-full lg:h-auto"
+  >
     <div class="stepper__header flex items-center justify-center">
       <StepIcon
         v-for="index in steps.length"
@@ -26,12 +28,6 @@ import ProfileStep from "./ProfileStep.vue";
 
 export default Vue.extend({
   name: "Stepper",
-  // props: {
-  //   steps: {
-  //     type: Array,
-  //     required: true,
-  //   },
-  // },
   components: {
     InformationStep,
     ProfileStep,
@@ -62,13 +58,10 @@ export default Vue.extend({
   },
   methods: {
     increaseStep() {
-      this.isLastStep ? this.submitForm() : this.currentStep++;
+      this.currentStep++;
     },
     decreaseStep() {
       this.currentStep -= 1;
-    },
-    submitForm() {
-      this.$emit("submit");
     },
     isActiveStep(index: number): boolean {
       return this.currentStep === index - 1;

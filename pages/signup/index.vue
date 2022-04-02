@@ -40,8 +40,5 @@ export default Vue.extend({
   &__body {
     @apply flex flex-col items-center w-full h-full;
   }
-  &__stepper {
-    @apply h-1/2 w-1/2 mt-12;
-  }
 }
 </style>
