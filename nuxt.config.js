@@ -21,7 +21,7 @@ export default {
   css: ["@/assets/css/main.css"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ["~/plugins/validations.js"],
+  plugins: ["~/plugins/validations.js", "~plugins/vue-the-mask.js"],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

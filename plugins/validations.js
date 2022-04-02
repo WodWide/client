@@ -1,5 +1,5 @@
 import { configure, extend } from "vee-validate";
-import { required, email } from "vee-validate/dist/rules";
+import { required, email, digits, numeric } from "vee-validate/dist/rules";
 
 const config = {
   useConstraintAttrs: false,
@@ -24,8 +24,14 @@ extend("password", {
   initial: false,
 });
 
-extend("phone", {
-  validate: (value) => /^\(?\d{3}\)?[- ]?\d{3}[- ]?\d{4}$/.test(value),
-  message: "Phone number should have a length of 10 digits",
+extend("digits", {
+  ...digits,
+  message: "Invalid number of digits",
+  initial: false,
+});
+
+extend("numeric", {
+  ...numeric,
+  message: "Must be numeric",
   initial: false,
 });
