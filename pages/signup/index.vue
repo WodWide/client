@@ -6,7 +6,7 @@
       </nuxt-link>
     </div>
     <div class="signup-page__body">
-      <Stepper />
+      <Stepper @signup="signup" />
     </div>
   </div>
 </template>
@@ -32,6 +32,14 @@ export default Vue.extend({
         },
       ],
     };
+  },
+  methods: {
+    signup() {
+      const user = this.$store.getters["user/user"];
+      // TODO add query for registration and hash password
+      console.log(user);
+      this.$router.push("/");
+    },
   },
 });
 </script>

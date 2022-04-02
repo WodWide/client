@@ -14,8 +14,9 @@
     <component
       :is="steps[currentStep].component"
       class="my-12"
-      @increase-step="increaseStep()"
-      @decrease-step="decreaseStep()"
+      @increase-step="increaseStep"
+      @decrease-step="decreaseStep"
+      @signup="$emit('signup')"
     />
   </div>
 </template>
