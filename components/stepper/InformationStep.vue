@@ -136,7 +136,7 @@ export default Vue.extend({
     Object.entries(storeUser) && (this.user = storeUser);
   },
   methods: {
-    increaseStep() {
+    increaseStep(): void {
       this.$store.dispatch("user/setUser", this.user);
       this.$emit("increase-step");
     },
