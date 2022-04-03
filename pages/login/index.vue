@@ -114,9 +114,12 @@ import Logo from "@/components/Logo.vue";
 import BaseButton from "@/components/common/BaseButton.vue";
 import BaseToggle from "@/components/common/BaseToggle.vue";
 import { LOGIN_USER } from "@/apollo/mutations/UserMutations";
+import mixins from "@/mixins/mixins";
 
 export default Vue.extend({
   components: { Logo, BaseButton, BaseToggle },
+  mixins: [mixins],
+
   data() {
     return {
       isCoach: false,
@@ -144,17 +147,20 @@ export default Vue.extend({
     }
   },
   methods: {
-    signIn() {
+    signIn(): void {
       if (this.username === "" || this.password === "") {
         this.error = "Please fill in all fields";
       } else {
+        const hashedPassword: string = mixins.methods.encryptPassword(
+          this.password
+        );
         try {
           this.$apollo
             .mutate({
               mutation: LOGIN_USER,
               variables: {
                 username: this.username,
-                password: this.password,
+                password: hashedPassword,
               },
             })
             .then((res: any) => {
