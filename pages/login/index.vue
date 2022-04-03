@@ -150,7 +150,7 @@ export default Vue.extend({
       if (this.username === "" || this.password === "") {
         this.error = "Please fill in all fields";
       } else {
-        const hashedPassword: string = encrypt.methods.encryptPassword(
+        const hashedPassword: string = encrypt.methods.hashPassword(
           this.password
         );
         try {
