@@ -1,10 +1,9 @@
-import bcrypt from "bcryptjs";
+import crypto from "crypto";
 
 export default {
   methods: {
-    encryptPassword(password: string): string {
-      const salt = bcrypt.genSaltSync(10);
-      return bcrypt.hashSync(password, salt);
+    hashPassword(password: string): string {
+      return crypto.createHash("sha1").update(password).digest("hex");
     },
   },
 };
