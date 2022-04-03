@@ -7,6 +7,13 @@
     </div>
     <div class="signup-page__body">
       <Stepper @signup="signup" />
+      <div
+        v-if="error"
+        id="signup-page-error"
+        class="inline-flex items-center justify-center text-center mb-4 text-red-800"
+      >
+        {{ error }}
+      </div>
     </div>
   </div>
 </template>
@@ -14,11 +21,19 @@
 <script lang="ts">
 import Vue from "vue";
 import Stepper from "@/components/stepper/Stepper.vue";
+import { REGISTER_USER } from "@/apollo/mutations/UserMutations";
+import encrypt from "@/mixins/encrypt";
 
 export default Vue.extend({
   name: "Signup",
   components: {
     Stepper,
+  },
+  mixins: [encrypt],
+  data() {
+    return {
+      error: "",
+    };
   },
   head() {
     return {
@@ -34,10 +49,37 @@ export default Vue.extend({
     };
   },
   methods: {
-    signup() {
+    signup(): void {
+      // TODO update user information on successfull
       const user = this.$store.getters["user/user"];
-      // TODO add query for registration and hash password
-      console.log(user);
+      const encryptedPassword = encrypt.methods.hashPassword(user.password);
+      try {
+        this.$apollo
+          .mutate({
+            mutation: REGISTER_USER,
+            variables: {
+              email: user.email,
+              username: user.username,
+              password1: encryptedPassword,
+              password2: encryptedPassword,
+            },
+          })
+          .then((res: any) => {
+            const success = res.data.register.success;
+            if (success) {
+              this.storeTokenAndRedirect(res.data.register.token);
+            } else {
+              const errorKey = Object.keys(res.data.register.errors)[0];
+              this.error = res.data.register.errors?.[errorKey][0]?.message;
+            }
+          });
+      } catch (e) {
+        console.log(e);
+        this.error = "There was an error signing up. Try again later.";
+      }
+    },
+    storeTokenAndRedirect(token: string): void {
+      this.$store.dispatch("user/setToken", token);
       this.$router.push("/");
     },
   },
