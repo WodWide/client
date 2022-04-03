@@ -115,6 +115,9 @@ export default Vue.extend({
       return this.$breakpoints.sMd;
     },
   },
+  created() {
+    this.$store.getters["user/authStatus"] && this.$router.push("/dashboard");
+  },
   methods: {
     toggleMenu() {
       this.showMenu = !this.showMenu;
