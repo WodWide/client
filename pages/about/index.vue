@@ -58,11 +58,11 @@ export default Vue.extend({
   },
   head() {
     return {
-      title: "About page of WodWide application",
+      title: "About",
       meta: [
         {
           hid: "about-page",
-          name: "about-page",
+          name: "About page",
           content:
             "This is the about page of the WodWide application containing information about the developers and the app",
         },
