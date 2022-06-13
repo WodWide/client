@@ -47,7 +47,7 @@
     </nav>
     <div
       id="index-page-body"
-      class="flex flex-col justify-center items-center mt-8 lg:mt-16 h-full"
+      class="flex flex-col justify-center items-center mt-8 lg:mt-16 2xl:mt-48 h-full"
     >
       <logo class="text-6xl" />
       <div class="index-page__icons flex my-12">
