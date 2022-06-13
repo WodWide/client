@@ -114,12 +114,11 @@ import Logo from "@/components/Logo.vue";
 import BaseButton from "@/components/common/BaseButton.vue";
 import BaseToggle from "@/components/common/BaseToggle.vue";
 import { LOGIN_USER } from "@/apollo/mutations/UserMutations";
-import mixins from "@/mixins/mixins";
+import encrypt from "@/mixins/encrypt";
 
 export default Vue.extend({
   components: { Logo, BaseButton, BaseToggle },
-  mixins: [mixins],
-
+  mixins: [encrypt],
   data() {
     return {
       isCoach: false,
@@ -151,7 +150,7 @@ export default Vue.extend({
       if (this.username === "" || this.password === "") {
         this.error = "Please fill in all fields";
       } else {
-        const hashedPassword: string = mixins.methods.encryptPassword(
+        const hashedPassword: string = encrypt.methods.hashPassword(
           this.password
         );
         try {

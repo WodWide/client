@@ -23,7 +23,7 @@ export const REGISTER_USER = gql`
     $password1: String!
     $password2: String!
   ) {
-    createUser(
+    register(
       email: $email
       username: $username
       password1: $password1
