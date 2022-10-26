@@ -1,7 +1,13 @@
 <template>
-  <button class="base-button" :class="themeClasses">
-    <slot />
-  </button>
+  <v-tooltip left>
+    <button
+      v-tooltip.top="{ content: tooltipDescription, classes: 'tooltip' }"
+      class="base-button transition ease-in-out delay-150"
+      :class="themeClasses"
+    >
+      <slot />
+    </button>
+  </v-tooltip>
 </template>
 <script lang="ts">
 import Vue from "vue";
@@ -20,8 +26,19 @@ export default Vue.extend({
     },
     bordered: {
       type: Boolean,
-      required: false,
       default: false,
+    },
+    tooltipDescription: {
+      type: String,
+      default: "",
+    },
+    hover: {
+      type: Boolean,
+      default: false,
+    },
+    hoverColor: {
+      type: String,
+      default: "",
     },
   },
   computed: {
@@ -29,12 +46,20 @@ export default Vue.extend({
       return [
         `base-button--${this.theme}`,
         this.bordered ? `base-button--${this.theme}--bordered` : "",
+        this.hoverColor ? `hover:${this.hoverColor}` : "",
       ];
     },
   },
 });
 </script>
 <style lang="scss">
+.tooltip {
+  background: white;
+  color: black;
+  padding: 1em;
+  border-radius: 5px;
+  box-shadow: 0 5px 30px rgba(black, 0.1);
+}
 .base-button {
   @apply text-white font-bold py-3 px-8 rounded-lg;
 
