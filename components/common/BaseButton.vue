@@ -1,13 +1,11 @@
 <template>
-  <v-tooltip left>
-    <button
-      v-tooltip.top="{ content: tooltipDescription, classes: 'tooltip' }"
-      class="base-button transition ease-in-out delay-150"
-      :class="themeClasses"
-    >
-      <slot />
-    </button>
-  </v-tooltip>
+  <button
+    v-tooltip.top="{ content: tooltipDescription, classes: 'tooltip' }"
+    class="base-button transition ease-in-out delay-150"
+    :class="themeClasses"
+  >
+    <slot />
+  </button>
 </template>
 <script lang="ts">
 import Vue from "vue";
