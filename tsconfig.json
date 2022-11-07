@@ -16,7 +16,8 @@
       "~/*": ["./*"],
       "@/*": ["./*"]
     },
-    "types": ["@nuxt/types", "@types/jest", "@types/node", "vue-apollo/types"]
+    "types": ["@nuxt/types", "@types/jest", "@types/node", "vue-apollo/types", "@nuxtjs/toast",
+    ]
   },
   "exclude": ["node_modules", ".nuxt", "dist"]
 }
