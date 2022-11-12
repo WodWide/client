@@ -62,6 +62,7 @@ export default Vue.extend({
 </script>
 <style lang="scss">
 .side-navbar {
+  position: absolute;
   @apply h-full w-24 text-center;
   border-right: 1px solid rgba(43, 43, 43, 0.168);
   background: linear-gradient(
