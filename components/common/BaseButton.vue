@@ -1,6 +1,5 @@
 <template>
   <button
-    v-tooltip.top="{ content: tooltipDescription, classes: 'tooltip' }"
     class="base-button transition ease-in-out delay-150"
     :class="themeClasses"
   >
@@ -25,10 +24,6 @@ export default Vue.extend({
     bordered: {
       type: Boolean,
       default: false,
-    },
-    tooltipDescription: {
-      type: String,
-      default: "",
     },
     hover: {
       type: Boolean,
