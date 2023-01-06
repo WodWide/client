@@ -10,7 +10,7 @@
           :key="item.src"
           :hover-color="hoverColor"
           theme="blank"
-          :tooltip-description="item.alt"
+          v-tooltip.top="{ content: item.alt, classes: 'tooltip' }"
         >
           <img :key="item.src" :src="item.src" :alt="item.alt" />
         </BaseButton>
@@ -21,7 +21,7 @@
           :key="item.src"
           :hover-color="hoverColor"
           theme="blank"
-          :tooltip-description="item.alt"
+          v-tooltip.top="{ content: item.alt, classes: 'tooltip' }"
         >
           <img :key="item.src" :src="item.src" :alt="item.alt" />
         </BaseButton>
