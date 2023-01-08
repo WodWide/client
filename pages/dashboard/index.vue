@@ -1,5 +1,5 @@
 <template>
-  <div class="about-page h-full">
+  <div class="dashboard-page h-full">
     <Nuxt />
   </div>
 </template>
