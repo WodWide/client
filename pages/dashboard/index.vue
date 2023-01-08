@@ -1,15 +1,14 @@
 <template>
   <div class="about-page h-full">
-    <SideNavbar />
+    <Nuxt />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import SideNavbar from "@/components/layoutComponents/SideNavbar.vue";
 
 export default Vue.extend({
-  components: { SideNavbar },
+  layout: "SideNavbar",
   middleware: "auth",
   head() {
     return {
@@ -26,4 +25,3 @@ export default Vue.extend({
   },
 });
 </script>
-<style lang="scss"></style>
