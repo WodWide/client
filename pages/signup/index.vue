@@ -80,7 +80,7 @@ export default Vue.extend({
     },
     storeTokenAndRedirect(token: string): void {
       this.$store.dispatch("user/setToken", token);
-      this.$router.push("/");
+      this.$router.push("/dashboard");
     },
   },
 });
