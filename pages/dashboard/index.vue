@@ -10,11 +10,18 @@ import SideNavbar from "@/components/layoutComponents/SideNavbar.vue";
 
 export default Vue.extend({
   components: { SideNavbar },
-  data() {
+  middleware: "auth",
+  head() {
     return {
-      data: {
-        type: String,
-      },
+      title: "Dashboard",
+      meta: [
+        {
+          hid: "dashboard",
+          name: "Dashboard",
+          content:
+            "Dashboard of WodWide. This is the main page in which athletes can control everything from here.",
+        },
+      ],
     };
   },
 });
