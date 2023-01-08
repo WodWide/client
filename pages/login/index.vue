@@ -142,7 +142,7 @@ export default Vue.extend({
   },
   created() {
     if (this.$store.state.user.authStatus) {
-      this.$router.push("/");
+      this.$router.push("/dashboard");
     }
   },
   methods: {
