@@ -1,22 +1,27 @@
 <template>
-  <div class="about-page h-full">
-    <SideNavbar />
+  <div class="dashboard-page h-full">
+    <Nuxt />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import SideNavbar from "@/components/layoutComponents/SideNavbar.vue";
 
 export default Vue.extend({
-  components: { SideNavbar },
-  data() {
+  layout: "SideNavbar",
+  middleware: "auth",
+  head() {
     return {
-      data: {
-        type: String,
-      },
+      title: "Dashboard",
+      meta: [
+        {
+          hid: "dashboard",
+          name: "Dashboard",
+          content:
+            "Dashboard of WodWide. This is the main page in which athletes can control everything from here.",
+        },
+      ],
     };
   },
 });
 </script>
-<style lang="scss"></style>
