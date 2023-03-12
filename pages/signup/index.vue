@@ -7,13 +7,6 @@
     </div>
     <div class="signup-page__body">
       <Stepper @signup="signup" />
-      <div
-        v-if="error"
-        id="signup-page-error"
-        class="inline-flex items-center justify-center text-center mb-4 text-red-800"
-      >
-        {{ error }}
-      </div>
     </div>
   </div>
 </template>
@@ -71,16 +64,25 @@ export default Vue.extend({
             } else {
               const errorKey = Object.keys(res.data.register.errors)[0];
               this.error = res.data.register.errors?.[errorKey][0]?.message;
+              this.setError(this.error);
             }
           });
       } catch (e) {
         console.log(e);
         this.error = "There was an error signing up. Try again later.";
+        this.setError(this.error);
       }
     },
     storeTokenAndRedirect(token: string): void {
       this.$store.dispatch("user/setToken", token);
       this.$router.push("/");
+    },
+    setError(error: string) {
+      this.$toast.show({
+        type: "danger",
+        title: "Error",
+        message: error,
+      });
     },
   },
 });

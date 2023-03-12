@@ -122,9 +122,6 @@ export default Vue.extend({
     toggleMenu() {
       this.showMenu = !this.showMenu;
     },
-    setError(error: string) {
-      this.$toast.error(error).goAway(2000);
-    },
   },
 });
 </script>
