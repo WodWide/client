@@ -1,15 +1,24 @@
 <template>
   <div class="dashboard-page h-full">
-    <Nuxt />
+    <SideNavbar />
+    <div class="flex flex-col">
+      <div
+        class="dashboard-page__title flex items-center justify-center font-lg text-lg lg:text-3xl absolute top-4 shadow-2xl"
+        :class="{ 'dashboard-page__title--mobile': isMobile }"
+      >
+        Welcome to our global community
+      </div>
+      <Map />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-
+import Map from "@/components/Map.vue";
+import SideNavbar from "@/components/common/SideNavbar.vue";
 export default Vue.extend({
-  layout: "SideNavbar",
-  middleware: "auth",
+  components: { Map, SideNavbar },
   head() {
     return {
       title: "Dashboard",
@@ -23,5 +32,26 @@ export default Vue.extend({
       ],
     };
   },
+  computed: {
+    isMobile(): boolean {
+      return this.$breakpoints.sMd;
+    },
+  },
 });
 </script>
+<style lang="scss">
+.dashboard-page {
+  &__title {
+    z-index: 999;
+    left: 35%;
+    background: white;
+    padding: 1em;
+    border-radius: 1em;
+    &--mobile {
+      left: 0;
+      width: 80%;
+      top: 4em;
+    }
+  }
+}
+</style>
