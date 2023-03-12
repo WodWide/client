@@ -68,13 +68,6 @@
           />
         </div>
       </div>
-      <div
-        v-if="error"
-        id="login-page-error"
-        class="inline-flex items-center justify-center text-center mb-4 text-red-800"
-      >
-        {{ error }}
-      </div>
       <div class="flex flex-col items-center w-auto">
         <div class="flex w-full mx-16">
           <BaseToggle v-model="isCoach">Coach</BaseToggle>
@@ -149,6 +142,7 @@ export default Vue.extend({
     signIn(): void {
       if (this.username === "" || this.password === "") {
         this.error = "Please fill in all fields";
+        this.setError(this.error);
       } else {
         const hashedPassword: string = encrypt.methods.hashPassword(
           this.password
@@ -166,8 +160,8 @@ export default Vue.extend({
               this.storeInformation(res);
             });
         } catch (e) {
-          console.log(e);
           this.error = "There was an error logging in. Try again later.";
+          this.setError(this.error);
         }
       }
     },
@@ -179,7 +173,15 @@ export default Vue.extend({
       } else {
         this.error =
           "Error: " + response.data.tokenAuth.errors.nonFieldErrors[0].message;
+        this.setError(this.error);
       }
+    },
+    setError(error: string) {
+      this.$toast.show({
+        type: "danger",
+        title: "Error",
+        message: error,
+      });
     },
     setUserToken(token: string) {
       this.$store.dispatch("user/setToken", token);

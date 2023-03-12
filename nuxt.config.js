@@ -1,5 +1,8 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  app: {
+    components: true,
+  },
   head: {
     titleTemplate: "%s - Wod Wide",
     meta: [
@@ -45,22 +48,16 @@ export default {
     "@nuxtjs/apollo",
     "nuxt-breakpoints",
     "@nuxtjs/proxy",
-    "@nuxtjs/toast",
-  ],
-
-  toast: {
-    position: "top-center",
-    register: [
-      // Register custom toasts
+    [
+      "nuxt-tailvue",
       {
-        name: "my-error",
-        message: "Oops...Something went wrong",
-        options: {
-          type: "error",
+        toast: {
+          all: true,
+          defaults: { containerClasses: ["justify-center"] },
         },
       },
     ],
-  },
+  ],
 
   fontawesome: {
     icons: {
