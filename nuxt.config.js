@@ -47,6 +47,7 @@ export default {
     "@nuxtjs/apollo",
     "nuxt-breakpoints",
     "@nuxtjs/proxy",
+    "nuxt-leaflet",
   ],
 
   fontawesome: {
