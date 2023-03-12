@@ -1,8 +1,5 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
-  app: {
-    components: true,
-  },
   head: {
     titleTemplate: "%s - Wod Wide",
     meta: [
