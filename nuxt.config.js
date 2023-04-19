@@ -44,9 +44,26 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/pwa
     "@nuxtjs/pwa",
-    "@nuxtjs/apollo",
     "nuxt-breakpoints",
-    "@nuxtjs/proxy",
+    [
+      "@nuxtjs/firebase",
+      {
+        config: {
+          apiKey: "AIzaSyC4nvWAMeo_Y7UnOfJ_AGLAwXjTLOlkU_I",
+          authDomain: "wodwide-a5ab1.firebaseapp.com",
+          projectId: "wodwide-a5ab1",
+          storageBucket: "wodwide-a5ab1.appspot.com",
+          messagingSenderId: "1096779834802",
+          appId: "1:1096779834802:web:a0c2e2ce08c3e7c8da70ab",
+          measurementId: "G-E2QR4E5RW6",
+        },
+        // add all services from firebase for nuxt
+        services: {
+          auth: true,
+          firestore: true,
+        },
+      },
+    ],
   ],
 
   fontawesome: {
@@ -62,17 +79,6 @@ export default {
       lang: "en",
     },
   },
-
-  apollo: {
-    clientConfigs: {
-      default: {
-        httpEndpoint: "http://localhost:8000/graphql",
-      },
-    },
-  },
-
-  proxy: ["https://localhost:8000/graphql"],
-
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     transpile: ["vee-validate/dist/rules"],
