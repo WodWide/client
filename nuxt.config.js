@@ -49,13 +49,13 @@ export default {
       "@nuxtjs/firebase",
       {
         config: {
-          apiKey: "AIzaSyC4nvWAMeo_Y7UnOfJ_AGLAwXjTLOlkU_I",
-          authDomain: "wodwide-a5ab1.firebaseapp.com",
-          projectId: "wodwide-a5ab1",
-          storageBucket: "wodwide-a5ab1.appspot.com",
-          messagingSenderId: "1096779834802",
-          appId: "1:1096779834802:web:a0c2e2ce08c3e7c8da70ab",
-          measurementId: "G-E2QR4E5RW6",
+          apiKey: process.env.FIREBASE_API_KEY,
+          authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+          projectId: process.env.FIREBASE_PROJECT_ID,
+          storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+          messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+          appId: process.env.FIREBASE_APP_ID,
+          measurementId: process.env.FIREBASE_MEASUREMENT_ID,
         },
         // add all services from firebase for nuxt
         services: {
