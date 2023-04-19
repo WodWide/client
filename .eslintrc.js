@@ -10,21 +10,11 @@ module.exports = {
   extends: [
     "plugin:vue/recommended",
     "@nuxtjs/eslint-config-typescript",
-    "prettier",
     "plugin:prettier/recommended",
   ],
-  plugins: ["vue"],
+  plugins: ["vue", "prettier"],
   rules: {
     "no-console": "off",
     "vue/max-attributes-per-line": "off",
-    "prettier/prettier": [
-      "error",
-      {
-        htmlWhitespaceSensitivity: "ignore",
-        semi: true,
-        singleQuote: false,
-        printWidth: 80,
-      },
-    ],
   },
 };
