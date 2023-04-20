@@ -39,11 +39,12 @@
         </div>
         <div class="side-navbar__lower w-24 mb-8">
           <BaseButton
-            v-for="item in lowerMenu"
+            v-for="(item, index) in lowerMenu"
             :key="item.src"
             v-tooltip.top="{ content: item.alt, classes: 'tooltip' }"
             :hover-color="hoverColor"
             theme="blank"
+            @click.native="logout(index)"
           >
             <img :key="item.src" :src="item.src" :alt="item.alt" />
           </BaseButton>
@@ -89,12 +90,26 @@ export default Vue.extend({
     toggleMenu(): void {
       this.showMenu = !this.showMenu;
     },
+    logout(index): void {
+      if (index === 2) {
+        this.$store.dispatch("user/resetData");
+        this.$router.push("/");
+      }
+    },
   },
 });
 </script>
 <style lang="scss">
-.side-navbar {
+.tooltip {
+  background: white;
+  color: black;
+  padding: 1em;
+  border-radius: 5px;
+  box-shadow: 0 5px 30px rgba(black, 0.1);
   z-index: 999;
+}
+.side-navbar {
+  z-index: 500;
   position: absolute;
   &--desktop {
     @apply h-full w-24 text-center;

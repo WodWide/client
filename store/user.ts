@@ -13,11 +13,16 @@ export const getters = {
 export const mutations = {
   SET_TOKEN(state: { token: string; authStatus: boolean }, token: string) {
     state.token = token;
-    state.authStatus = true;
+    state.authStatus = token !== "";
     localStorage.setItem("apollo-token", token);
   },
   SET_USER(state: { user: any }, user: any) {
     state.user = { ...user };
+  },
+  RESET_DATA(state: { token: string; authStatus: boolean; user: any }) {
+    state.token = "";
+    state.authStatus = false;
+    state.user = {};
   },
 };
 
@@ -27,5 +32,8 @@ export const actions = {
   },
   setUser({ commit }: any, user: any) {
     commit("SET_USER", user);
+  },
+  resetData({ commit }: any) {
+    commit("RESET_DATA");
   },
 };
