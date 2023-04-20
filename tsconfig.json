@@ -21,7 +21,8 @@
       "@types/jest",
       "@types/node",
       "node",
-      "@nuxtjs/firebase"
+      "@nuxtjs/firebase",
+      "nuxt-leaflet"
     ]
   },
   "exclude": ["node_modules", ".nuxt", "dist", "**/*.spec.ts"]

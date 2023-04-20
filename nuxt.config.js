@@ -64,6 +64,7 @@ export default {
         },
       },
     ],
+    "nuxt-leaflet",
   ],
 
   fontawesome: {
