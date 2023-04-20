@@ -161,14 +161,23 @@ export default Vue.extend({
       }
     },
     storeInformation(response: any) {
-      if (response.data.tokenAuth.success) {
-        this.setUserToken(response.data.tokenAuth.token);
-        this.setUserDetails(response.data.tokenAuth.user);
-        this.$router.push("/");
-      } else {
-        this.error =
-          "Error: " + response.data.tokenAuth.errors.nonFieldErrors[0].message;
-      }
+      this.setUserToken(response.user.accessToken);
+      this.$fire.firestore
+        .collection("users")
+        .doc(this.email)
+        .get()
+        .then((doc: any) => {
+          if (doc.exists) {
+            this.setUserDetails(doc.data());
+            this.$router.push("/dashboard");
+          } else {
+            this.error = "Error: User does not exist";
+          }
+        })
+        .catch((err: any) => {
+          console.log(err);
+          this.error = "Error: " + err.message;
+        });
     },
     setUserToken(token: string) {
       this.$store.dispatch("user/setToken", token);
