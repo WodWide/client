@@ -16,8 +16,14 @@
       "~/*": ["./*"],
       "@/*": ["./*"]
     },
-    "types": ["@nuxt/types", "@types/jest", "@types/node", "vue-apollo/types", "nuxt-tailvue",
+    "types": [
+      "@nuxt/types",
+      "@types/jest",
+      "@types/node",
+      "node",
+      "@nuxtjs/firebase",
+      "nuxt-leaflet"
     ]
   },
-  "exclude": ["node_modules", ".nuxt", "dist"]
+  "exclude": ["node_modules", ".nuxt", "dist", "**/*.spec.ts"]
 }

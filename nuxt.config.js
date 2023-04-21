@@ -27,6 +27,8 @@ export default {
     "~plugins/tooltip.js",
   ],
 
+  middleware: ["auth"],
+
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
@@ -42,9 +44,27 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/pwa
     "@nuxtjs/pwa",
-    "@nuxtjs/apollo",
     "nuxt-breakpoints",
-    "@nuxtjs/proxy",
+    [
+      "@nuxtjs/firebase",
+      {
+        config: {
+          apiKey: process.env.FIREBASE_API_KEY,
+          authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+          projectId: process.env.FIREBASE_PROJECT_ID,
+          storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+          messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+          appId: process.env.FIREBASE_APP_ID,
+          measurementId: process.env.FIREBASE_MEASUREMENT_ID,
+        },
+        // add all services from firebase for nuxt
+        services: {
+          auth: true,
+          firestore: true,
+        },
+      },
+    ],
+    "nuxt-leaflet",
     [
       "nuxt-tailvue",
       {
@@ -69,17 +89,6 @@ export default {
       lang: "en",
     },
   },
-
-  apollo: {
-    clientConfigs: {
-      default: {
-        httpEndpoint: "http://localhost:8000/graphql",
-      },
-    },
-  },
-
-  proxy: ["https://localhost:8000/graphql"],
-
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     transpile: ["vee-validate/dist/rules"],

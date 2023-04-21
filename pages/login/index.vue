@@ -25,22 +25,22 @@
       <div class="mb-4">
         <label
           class="block text-grey-darker text-sm font-bold mb-2"
-          for="username"
+          for="email"
         >
-          Username
+          Email
         </label>
         <div class="inline-flex w-full items-center justify-center">
           <font-awesome-icon
             id="font-awesome-icon"
-            :icon="['fas', 'user']"
+            :icon="['fas', 'envelope']"
             class="text-2xl text-gray-700"
           />
           <input
-            id="username"
-            v-model="username"
+            id="email"
+            v-model="email"
             class="shadow appearance-none border rounded-lg w-full py-2 px-3 mx-4 text-grey-darker"
             type="text"
-            placeholder="Username"
+            placeholder="Email"
             @keyup.enter="signIn"
           />
         </div>
@@ -70,7 +70,6 @@
       </div>
       <div class="flex flex-col items-center w-auto">
         <div class="flex w-full mx-16">
-          <BaseToggle v-model="isCoach">Coach</BaseToggle>
           <a
             class="inline-flex justify-end w-full font-bold text-sm text-blue text-gray-800 hover:text-gray-600"
             href="#"
@@ -105,18 +104,15 @@
 import Vue from "vue";
 import Logo from "@/components/Logo.vue";
 import BaseButton from "@/components/common/BaseButton.vue";
-import BaseToggle from "@/components/common/BaseToggle.vue";
-import { LOGIN_USER } from "@/apollo/mutations/UserMutations";
 import encrypt from "@/mixins/encrypt";
 
 export default Vue.extend({
-  components: { Logo, BaseButton, BaseToggle },
+  components: { Logo, BaseButton },
   mixins: [encrypt],
   data() {
     return {
-      isCoach: false,
       error: "",
-      username: "",
+      email: "",
       password: "",
     };
   },
@@ -135,53 +131,46 @@ export default Vue.extend({
   },
   created() {
     if (this.$store.state.user.authStatus) {
-      this.$router.push("/");
+      this.$router.push("/dashboard");
     }
   },
   methods: {
     signIn(): void {
       if (this.username === "" || this.password === "") {
         this.error = "Please fill in all fields";
-        this.setError(this.error);
       } else {
         const hashedPassword: string = encrypt.methods.hashPassword(
           this.password
         );
-        try {
-          this.$apollo
-            .mutate({
-              mutation: LOGIN_USER,
-              variables: {
-                username: this.username,
-                password: hashedPassword,
-              },
-            })
-            .then((res: any) => {
-              this.storeInformation(res);
-            });
-        } catch (e) {
-          this.error = "There was an error logging in. Try again later.";
-          this.setError(this.error);
-        }
+        this.$fire.auth
+          .signInWithEmailAndPassword(this.email, hashedPassword)
+          .then((res: any) => {
+            this.storeInformation(res);
+          })
+          .catch((err: any) => {
+            console.log(err);
+            this.error = "Error: " + err.message;
+          });
       }
     },
     storeInformation(response: any) {
-      if (response.data.tokenAuth.success) {
-        this.setUserToken(response.data.tokenAuth.token);
-        this.setUserDetails(response.data.tokenAuth.user);
-        this.$router.push("/");
-      } else {
-        this.error =
-          "Error: " + response.data.tokenAuth.errors.nonFieldErrors[0].message;
-        this.setError(this.error);
-      }
-    },
-    setError(error: string) {
-      this.$toast.show({
-        type: "danger",
-        title: "Error",
-        message: error,
-      });
+      this.setUserToken(response.user.accessToken);
+      this.$fire.firestore
+        .collection("users")
+        .doc(this.email)
+        .get()
+        .then((doc: any) => {
+          if (doc.exists) {
+            this.setUserDetails(doc.data());
+            this.$router.push("/dashboard");
+          } else {
+            this.error = "Error: User does not exist";
+          }
+        })
+        .catch((err: any) => {
+          console.log(err);
+          this.error = "Error: " + err.message;
+        });
     },
     setUserToken(token: string) {
       this.$store.dispatch("user/setToken", token);
