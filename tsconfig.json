@@ -22,7 +22,8 @@
       "@types/node",
       "node",
       "@nuxtjs/firebase",
-      "nuxt-leaflet"
+      "nuxt-leaflet",
+      "nuxt-tailvue"
     ]
   },
   "exclude": ["node_modules", ".nuxt", "dist", "**/*.spec.ts"]

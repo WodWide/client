@@ -65,6 +65,15 @@ export default {
       },
     ],
     "nuxt-leaflet",
+    [
+      "nuxt-tailvue",
+      {
+        toast: {
+          all: true,
+          defaults: { containerClasses: ["justify-center"] },
+        },
+      },
+    ],
   ],
 
   fontawesome: {

@@ -61,6 +61,7 @@
     "husky": "^6.0.0",
     "jest": "^27.0.5",
     "lint-staged": "^10.5.4",
+    "nuxt-tailvue": "^1.0.95",
     "postcss": "^8.3.5",
     "prettier": "^2.3.2",
     "start-server-and-test": "^1.14.0",

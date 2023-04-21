@@ -12,17 +12,17 @@ describe("Login page", () => {
   });
   it("should display proper error message when both inputs are empty", () => {
     cy.get("#login-page-submit").click();
-    cy.get("#login-page-error").contains("Please fill in all fields");
+    cy.get("#toasts").contains("Please fill in all fields");
   });
   it("should display proper error message when username input is empty", () => {
     cy.get("#password").type("password");
     cy.get("#login-page-submit").click();
-    cy.get("#login-page-error").contains("Please fill in all fields");
+    cy.get("#toasts").contains("Please fill in all fields");
   });
   it("should display proper error message when password input is empty", () => {
     cy.get("#username").type("username");
     cy.get("#login-page-submit").click();
-    cy.get("#login-page-error").contains("Please fill in all fields");
+    cy.get("#toasts").contains("Please fill in all fields");
   });
   it("should redirect to /signup when register button is clicked", () => {
     cy.get("#login-page-signup-button").click();
@@ -39,7 +39,7 @@ describe("Login page", () => {
       cy.get("#password").type(user.password);
       cy.get("#login-page-submit").click();
     });
-    cy.get("#login-page-error").contains("Error: Invalid email or password");
+    cy.get("#toasts").contains("Error: Invalid email or password");
   });
   it("Should login", () => {
     cy.intercept("POST", "/graphql", (req) => {

@@ -7,13 +7,6 @@
     </div>
     <div class="signup-page__body">
       <Stepper @signup="signup" />
-      <div
-        v-if="error"
-        id="signup-page-error"
-        class="inline-flex items-center justify-center text-center mb-4 text-red-800"
-      >
-        {{ error }}
-      </div>
     </div>
   </div>
 </template>
@@ -63,14 +56,19 @@ export default Vue.extend({
         .catch((e: any) => {
           console.log(e);
           this.error = "Error:" + e.message;
-          setTimeout(() => {
-            this.error = "";
-          }, 5000);
+          this.setError(this.error);
         });
     },
     storeTokenAndRedirect(token: string): void {
       this.$store.dispatch("user/setToken", token);
       this.$router.push("/dashboard");
+    },
+    setError(error: string) {
+      this.$toast.show({
+        type: "danger",
+        title: "Error",
+        message: error,
+      });
     },
   },
 });
