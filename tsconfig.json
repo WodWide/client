@@ -22,7 +22,9 @@
       "@types/node",
       "node",
       "@nuxtjs/firebase",
-      "nuxt-leaflet"
+      "nuxt-leaflet",
+      "@nuxtjs/toast",
+      "@nuxtjs/tailvue"
     ]
   },
   "exclude": ["node_modules", ".nuxt", "dist", "**/*.spec.ts"]

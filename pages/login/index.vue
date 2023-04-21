@@ -136,8 +136,9 @@ export default Vue.extend({
   },
   methods: {
     signIn(): void {
-      if (this.username === "" || this.password === "") {
+      if (this.email === "" || this.password === "") {
         this.error = "Please fill in all fields";
+        this.setError(this.error);
       } else {
         const hashedPassword: string = encrypt.methods.hashPassword(
           this.password
@@ -150,6 +151,7 @@ export default Vue.extend({
           .catch((err: any) => {
             console.log(err);
             this.error = "Error: " + err.message;
+            this.setError(this.error);
           });
       }
     },
@@ -165,11 +167,13 @@ export default Vue.extend({
             this.$router.push("/dashboard");
           } else {
             this.error = "Error: User does not exist";
+            this.setError(this.error);
           }
         })
         .catch((err: any) => {
           console.log(err);
           this.error = "Error: " + err.message;
+          this.setError(this.error);
         });
     },
     setUserToken(token: string) {
@@ -177,6 +181,13 @@ export default Vue.extend({
     },
     setUserDetails(user: any) {
       this.$store.dispatch("user/setUser", user);
+    },
+    setError(error: string) {
+      this.$toast.show({
+        type: "danger",
+        title: "Error",
+        message: error,
+      });
     },
   },
 });

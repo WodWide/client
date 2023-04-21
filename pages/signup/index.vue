@@ -56,9 +56,7 @@ export default Vue.extend({
         .catch((e: any) => {
           console.log(e);
           this.error = "Error:" + e.message;
-          setTimeout(() => {
-            this.error = "";
-          }, 5000);
+          this.setError(this.error);
         });
     },
     storeTokenAndRedirect(token: string): void {
