@@ -49,14 +49,6 @@ export default Vue.extend({
       ],
     };
   },
-  computed: {
-    isButtonDisabled(): Boolean {
-      return this.currentStep === 0;
-    },
-    isLastStep(): Boolean {
-      return this.currentStep === this.steps.length - 1;
-    },
-  },
   methods: {
     increaseStep() {
       this.currentStep++;

@@ -25,6 +25,7 @@ export default {
     "~/plugins/validations.js",
     "~plugins/vue-the-mask.js",
     "~plugins/tooltip.js",
+    "~plugins/nav-tabs.js",
     { src: "~/plugins/persistedstate.js", ssr: true },
   ],
 

@@ -10,10 +10,13 @@ body,
   height: 100%;
 }
 @media screen and (min-width: 810px) {
-  html,
-  body,
-  #__nuxt,
+
   #__layout {
     overflow-y: hidden;
+  }
+  html,
+  body,
+  #__nuxt{
+    overflow: auto;
   }
 }
