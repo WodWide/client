@@ -145,8 +145,11 @@ export default Vue.extend({
         );
         this.$fire.auth
           .signInWithEmailAndPassword(this.email, hashedPassword)
-          .then((res: any) => {
-            this.storeInformation(res);
+          .then((userCredential: any) => {
+            const user = userCredential.user;
+            user.getIdToken().then((token) => {
+              this.storeInformation(token);
+            });
           })
           .catch((err: any) => {
             console.log(err);
@@ -155,22 +158,24 @@ export default Vue.extend({
           });
       }
     },
-    storeInformation(response: any) {
-      this.setUserToken(response.user.accessToken);
+    storeInformation(token: any) {
+      this.setUserToken(token);
       this.$fire.firestore
         .collection("users")
-        .doc(this.email)
+        .where("email", "==", this.email)
         .get()
-        .then((doc: any) => {
-          if (doc.exists) {
-            this.setUserDetails(doc.data());
+        .then((querySnapshot) => {
+          if (!querySnapshot.empty) {
+            const userDoc = querySnapshot.docs[0];
+            const userDetails = userDoc.data();
+            this.setUserDetails(userDetails);
             this.$router.push("/dashboard");
           } else {
             this.error = "Error: User does not exist";
             this.setError(this.error);
           }
         })
-        .catch((err: any) => {
+        .catch((err) => {
           console.log(err);
           this.error = "Error: " + err.message;
           this.setError(this.error);

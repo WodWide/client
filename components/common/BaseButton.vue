@@ -25,10 +25,6 @@ export default Vue.extend({
       type: Boolean,
       default: false,
     },
-    hover: {
-      type: Boolean,
-      default: false,
-    },
     hoverColor: {
       type: String,
       default: "",
@@ -46,13 +42,6 @@ export default Vue.extend({
 });
 </script>
 <style lang="scss">
-.tooltip {
-  background: white;
-  color: black;
-  padding: 1em;
-  border-radius: 5px;
-  box-shadow: 0 5px 30px rgba(black, 0.1);
-}
 .base-button {
   @apply text-white font-bold py-3 px-8 rounded-lg;
 
