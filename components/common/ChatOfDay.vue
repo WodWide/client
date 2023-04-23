@@ -1,7 +1,7 @@
 <template>
   <div class="chat-of-day flex items-end flex-col">
     <div
-      v-if="isChatOpen"
+      v-show="isChatOpen"
       ref="chatContainer"
       class="chat-of-day__container flex flex-col justify-between bg-white rounded-lg p-4 drop-shadow-2xl mb-2"
     >
@@ -60,7 +60,7 @@ export default Vue.extend({
     return {
       messages: [],
       newMessage: "",
-      isChatOpen: true,
+      isChatOpen: false,
       ps: null,
     };
   },

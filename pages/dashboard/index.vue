@@ -9,7 +9,7 @@
         Welcome to our global community
       </div>
       <Map />
-      <ChatOfDay />
+      <ChatOfDay v-if="showChat" />
     </div>
   </div>
 </template>
@@ -38,6 +38,9 @@ export default Vue.extend({
   computed: {
     isMobile(): boolean {
       return this.$breakpoints.sMd;
+    },
+    showChat(): boolean {
+      return this.$store.getters["user/user"]?.gym;
     },
   },
 });
