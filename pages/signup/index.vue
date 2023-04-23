@@ -40,6 +40,11 @@ export default Vue.extend({
       ],
     };
   },
+  created() {
+    if (this.$store.state.user.authStatus) {
+      this.$router.push("/dashboard");
+    }
+  },
   methods: {
     signup() {
       const user = this.$store.getters["user/user"];
