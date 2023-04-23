@@ -25,6 +25,7 @@ export default {
     "~/plugins/validations.js",
     "~plugins/vue-the-mask.js",
     "~plugins/tooltip.js",
+    { src: "~/plugins/persistedstate.js", ssr: true },
   ],
 
   middleware: ["auth"],
