@@ -9,6 +9,7 @@
         Welcome to our global community
       </div>
       <Map />
+      <ChatOfDay />
     </div>
   </div>
 </template>
@@ -17,8 +18,10 @@
 import Vue from "vue";
 import Map from "@/components/Map.vue";
 import SideNavbar from "@/components/common/SideNavbar.vue";
+import ChatOfDay from "@/components/common/ChatOfDay.vue";
+
 export default Vue.extend({
-  components: { Map, SideNavbar },
+  components: { Map, SideNavbar, ChatOfDay },
   head() {
     return {
       title: "Dashboard",
@@ -42,15 +45,16 @@ export default Vue.extend({
 <style lang="scss">
 .dashboard-page {
   &__title {
-    z-index: 999;
+    z-index: 499;
     left: 35%;
     background: white;
     padding: 1em;
     border-radius: 1em;
     &--mobile {
       left: 0;
-      width: 80%;
+      width: 100%;
       top: 4em;
+      z-index: 499;
     }
   }
 }

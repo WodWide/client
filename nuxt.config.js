@@ -57,11 +57,14 @@ export default {
           messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
           appId: process.env.FIREBASE_APP_ID,
           measurementId: process.env.FIREBASE_MEASUREMENT_ID,
+          databaseURL: process.env.FIREBASE_DATABASE_URL,
         },
         // add all services from firebase for nuxt
         services: {
           auth: true,
           firestore: true,
+          database: true,
+          realtimeDb: true,
         },
       },
     ],
