@@ -173,7 +173,6 @@ export default Vue.extend({
           if (!querySnapshot.empty) {
             const userDoc = querySnapshot.docs[0];
             const userDetails = userDoc.data();
-            console.log(userDetails);
             this.setUserDetails(userDetails);
             this.$router.push("/dashboard");
           } else {
