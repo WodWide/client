@@ -28,11 +28,12 @@
       <div class="side-navbar__content pt-10">
         <div class="side-navbar__upper h-full">
           <BaseButton
-            v-for="item in upperMenu"
+            v-for="(item, index) in upperMenu"
             :key="item.src"
             v-tooltip.top="{ content: item.alt, classes: 'tooltip' }"
             :hover-color="hoverColor"
             theme="blank"
+            @click.native="upperMenuActions(index)"
           >
             <img :key="item.src" :src="item.src" :alt="item.alt" />
           </BaseButton>
@@ -60,7 +61,7 @@ import BaseButton from "@/components/common/BaseButton.vue";
 const upperMenu = [
   { src: "/home-icon.svg", alt: "Home" },
   { src: "/leaderboard-icon.svg", alt: "Leaderboard" },
-  { src: "/wod-icon.svg", alt: "Wod" },
+  { src: "/gym-icon.svg", alt: "Gym" },
 ];
 const lowerMenu = [
   { src: "/account-icon.svg", alt: "Account" },
@@ -87,6 +88,9 @@ export default Vue.extend({
     },
   },
   methods: {
+    gym(): void {
+      this.$router.push("/gym");
+    },
     toggleMenu(): void {
       this.showMenu = !this.showMenu;
     },
@@ -94,6 +98,11 @@ export default Vue.extend({
       if (index === 2) {
         this.$store.dispatch("user/resetData");
         this.$router.push("/");
+      }
+    },
+    upperMenuActions(index): void {
+      if (index === 2) {
+        this.gym();
       }
     },
   },

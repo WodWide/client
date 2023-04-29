@@ -7,6 +7,7 @@
       <template #back="{ flip }">
         <CardBack
           :gym="gym"
+          :buttonAction="buttonAction"
           @click="flip && flip()"
           @joinGym="joinGym(gym)"
           @cancel="handleCancel({ callbackFlip: flip })"
@@ -27,6 +28,10 @@ export default {
   props: {
     gym: {
       type: Object,
+      required: true,
+    },
+    buttonAction: {
+      type: String,
       required: true,
     },
   },

@@ -48,9 +48,10 @@ export default Vue.extend({
     padding: 1em;
     border-radius: 1em;
     &--mobile {
-      left: 0;
-      width: 80%;
+      left: 27%;
+      width: 60%;
       top: 4em;
+      font-size: 0.75em;
     }
   }
 }

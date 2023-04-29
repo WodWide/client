@@ -1,38 +1,45 @@
 <template>
-  <div class="join-gym-tab">
-    <h2 class="join-gym-tab__heading">Select gym</h2>
-    <div class="mb-1 w-full items-center flex flex-col">
-      <form class="mb-8 relative" @submit.prevent="handleInput">
-        <input
-          v-model="searchTerm"
-          class="join-gym-tab__input"
-          type="text"
-          placeholder="Search here..."
-        />
-      </form>
-    </div>
-    <template v-if="isResult">
-      <div
-        class="w-9/12 m-4 grid gap-5 grid-cols-1 xl:grid-cols-4 sm:grid-cols-3"
-      >
-        <BaseCard
-          v-for="(gym, index) in filteredGyms"
-          :key="index"
-          :gym="gym"
-          button-action="Join as a coach"
-          @joinGym="joinGym"
-        />
+  <div class="flex flex-col h-full">
+    <SideNavbar />
+    <div class="athlete-registration mt-8">
+      <h2 class="athlete-registration__heading px-8 pt-2">
+        Start your journey as a cross-training athlete
+      </h2>
+      <div class="mb-1 w-full items-center flex flex-col">
+        <form class="mb-8 relative" @submit.prevent="handleInput">
+          <input
+            v-model="searchTerm"
+            class="athlete-registration__input"
+            type="text"
+            placeholder="Search here..."
+          />
+        </form>
       </div>
-    </template>
+      <template v-if="isResult">
+        <div
+          class="w-9/12 m-4 grid gap-5 grid-cols-1 xl:grid-cols-4 sm:grid-cols-3"
+        >
+          <BaseCard
+            v-for="(gym, index) in filteredGyms"
+            :key="index"
+            :gym="gym"
+            button-action="Join as a member"
+            @joinGym="joinGym"
+          />
+        </div>
+      </template>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import BaseCard from "~/components/card/BaseCard.vue";
+import SideNavbar from "@/components/common/SideNavbar.vue";
 export default Vue.extend({
   components: {
     BaseCard,
+    SideNavbar,
   },
   data(): {
     gyms: any;
@@ -72,7 +79,7 @@ export default Vue.extend({
   methods: {
     joinGym(selectedGym) {
       this.trainerData = {
-        isTrainer: true,
+        isAthlete: true,
         gym: selectedGym.name,
       };
       this.updateGym(selectedGym.name);
@@ -88,16 +95,19 @@ export default Vue.extend({
             const trainers = doc.data()?.trainers.filter((trainer) => {
               return trainer.email === this.getUser.email;
             });
+            const members = doc.data()?.members?.filter((member) => {
+              return member.email === this.getUser.email;
+            });
             const isOwner = doc.data()?.owner?.email === this.getUser.email;
-            if (trainers.length === 0 && !isOwner) {
-              trainers.push({
+            if (trainers.length === 0 && !isOwner && members.length === 0) {
+              members.push({
                 email: this.getUser.email,
                 firstName: this.getUser.firstName,
                 lastName: this.getUser.lastName,
               });
               docRef
                 .update({
-                  trainers,
+                  members,
                 })
                 .then(() => {
                   this.updateTrainer();
@@ -171,7 +181,7 @@ export default Vue.extend({
 });
 </script>
 <style lang="scss">
-.join-gym-tab {
+.athlete-registration {
   color: #555;
   height: 100%;
   overflow-x: hidden;

@@ -25,6 +25,7 @@ export default Vue.extend({
   data() {
     return {
       error: "",
+      loading: false,
     };
   },
   head() {
