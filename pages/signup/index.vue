@@ -48,16 +48,16 @@ export default Vue.extend({
   },
   methods: {
     signup() {
-      const user = this.$store.getters["user/user"];
+      const user = { ...this.$store.getters["user/user"] };
       const encryptedPassword = encrypt.methods.hashPassword(user.password);
       this.$fire.auth
         .createUserWithEmailAndPassword(user.email, encryptedPassword)
         .then((res: any) => {
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          const { password, ...info } = user;
+          delete user.password;
           const ref = this.$fire.firestore.collection("users");
-          ref.add(info);
+          ref.add(user);
           this.storeTokenAndRedirect(res.user.accessToken);
+          this.$store.dispatch("user/setUser", user);
         })
         .catch((e: any) => {
           console.log(e);
