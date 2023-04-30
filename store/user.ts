@@ -30,7 +30,9 @@ export const actions = {
     commit("SET_TOKEN", token);
   },
   setUser({ commit }: any, user: any) {
-    commit("SET_USER", user);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...info } = user;
+    commit("SET_USER", info);
   },
   resetData({ commit }: any) {
     commit("RESET_DATA");
