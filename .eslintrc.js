@@ -14,6 +14,7 @@ module.exports = {
   ],
   plugins: ["vue", "prettier"],
   rules: {
+    "vue/no-v-html": "off",
     "no-console": "off",
     "vue/max-attributes-per-line": "off",
   },
