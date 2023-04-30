@@ -7,7 +7,7 @@
       <template #back="{ flip }">
         <CardBack
           :gym="gym"
-          :buttonAction="buttonAction"
+          :button-action="buttonAction"
           @click="flip && flip()"
           @joinGym="joinGym(gym)"
           @cancel="handleCancel({ callbackFlip: flip })"
