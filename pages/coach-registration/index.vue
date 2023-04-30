@@ -1,5 +1,5 @@
 <template>
-  <div class="signup-page flex flex-col h-full">
+  <div class="flex flex-col h-full">
     <SideNavbar />
     <vue-tabs
       active-tab-color="black"

@@ -83,6 +83,12 @@
           class="rounded-full mt-4 text-lg"
           @click.native="signIn"
         >
+          <font-awesome-icon
+            v-if="loading"
+            class="text-2xl"
+            :icon="['fas', 'spinner']"
+            spin
+          />
           Sign In
         </BaseButton>
       </div>
@@ -114,6 +120,7 @@ export default Vue.extend({
       error: "",
       email: "",
       password: "",
+      loading: false,
     };
   },
   head() {
@@ -140,6 +147,7 @@ export default Vue.extend({
         this.error = "Please fill in all fields";
         this.setError(this.error);
       } else {
+        this.loading = true;
         const hashedPassword: string = encrypt.methods.hashPassword(
           this.password
         );
@@ -149,12 +157,14 @@ export default Vue.extend({
             const user = userCredential.user;
             user.getIdToken().then((token) => {
               this.storeInformation(token);
+              this.loading = false;
             });
           })
           .catch((err: any) => {
             console.log(err);
             this.error = "Error: " + err.message;
             this.setError(this.error);
+            this.loading = false;
           });
       }
     },

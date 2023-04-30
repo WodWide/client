@@ -19,17 +19,31 @@
           <span class="font-bold">Country:</span>
           {{ gym.country }}
         </div>
-        <div v-if="gym.website">
-          <span class="font-bold">Website:</span>
-          {{ gym.website }}
+        <div v-if="gym.address">
+          <span class="font-bold">Address:</span>
+          {{ gym.address }}
         </div>
         <div v-if="gym.phone">
           <span class="font-bold">Phone:</span>
           {{ gym.phone }}
         </div>
+        <div v-if="gym.email">
+          <span class="font-bold">Email:</span>
+          {{ gym.email }}
+        </div>
+        <template v-if="gym.members">
+          <div v-if="gym.members.length > 0">
+            <span class="font-bold">Members:</span>
+            {{ gym.members.length }}
+          </div>
+        </template>
+        <div v-if="gym.website">
+          <span class="font-bold">Website:</span>
+          <a class="underline" :href="gym.website">{{ gym.website }}</a>
+        </div>
       </div>
       <div class="card-back__footer flex justify-center py-2">
-        <BaseButton @click.native="joinGym">Join as a coach</BaseButton>
+        <BaseButton @click.native="joinGym">{{ buttonAction }}</BaseButton>
       </div>
     </div>
   </div>
@@ -43,6 +57,10 @@ export default {
   props: {
     gym: {
       type: Object,
+      required: true,
+    },
+    buttonAction: {
+      type: String,
       required: true,
     },
   },

@@ -63,6 +63,9 @@ export default {
     &:focus {
       outline: 0;
     }
+    &-text {
+      border-bottom: 1px solid;
+    }
   }
 }
 </style>

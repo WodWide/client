@@ -47,6 +47,8 @@ export default {
     // https://go.nuxtjs.dev/pwa
     "@nuxtjs/pwa",
     "nuxt-breakpoints",
+    "@tui-nuxt/editor",
+    "@nuxtjs/markdownit",
     [
       "@nuxtjs/firebase",
       {
@@ -80,7 +82,9 @@ export default {
       },
     ],
   ],
-
+  markdownit: {
+    runtime: true, // Support `$md()`
+  },
   fontawesome: {
     icons: {
       solid: true,

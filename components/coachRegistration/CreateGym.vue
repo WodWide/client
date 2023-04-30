@@ -103,6 +103,30 @@
           <div class="create-gym__wrapper mb-6">
             <font-awesome-icon
               id="font-awesome-icon"
+              :icon="['fas', 'envelope']"
+              class="text-2xl text-gray-700"
+            />
+            <ValidationProvider
+              v-slot="{ errors }"
+              tag="div"
+              class="validation__wrapper"
+              vid="email"
+              rules="required"
+            >
+              <input
+                v-model="gym.email"
+                type="text"
+                :class="[
+                  'create-gym__input',
+                  errors.length > 0 ? 'border-red-600' : 'border-gray-600',
+                ]"
+                placeholder="Email"
+              />
+            </ValidationProvider>
+          </div>
+          <div class="create-gym__wrapper mb-6">
+            <font-awesome-icon
+              id="font-awesome-icon"
               :icon="['fas', 'globe']"
               class="text-2xl text-gray-700"
             />
@@ -214,9 +238,14 @@ export default Vue.extend({
       },
     };
   },
+  computed: {
+    getUser(): any {
+      return this.$store.getters["user/user"];
+    },
+  },
   methods: {
     submit(): void {
-      const user = this.$store.getters["user/user"];
+      const user = this.getUser;
       const gymData = {
         name: this.gym.name,
         ...(this.gym.website && { website: this.gym.website }),
@@ -225,21 +254,23 @@ export default Vue.extend({
         latitude: this.gym.latitude,
         longitude: this.gym.longitude,
         country: this.gym.country,
-        owner: user.email,
+        email: this.gym.email,
+        owner: {
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
+        },
         trainers: [],
+        members: [],
       };
+      this.createGym(gymData);
+    },
+    createGym(gymData: object) {
       this.$fire.firestore
         .collection("gyms")
         .add(gymData)
         .then(() => {
-          this.$toast.show({
-            type: "success",
-            title: "Success",
-            message: "You have successfully joined the gym",
-          });
-          setTimeout(() => {
-            this.$router.push("/dashboard");
-          }, 1000);
+          this.updateTrainer();
         })
         .catch((error) => {
           this.$toast.show({
@@ -248,6 +279,39 @@ export default Vue.extend({
             message: error.message,
           });
         });
+    },
+    async updateTrainer() {
+      const trainerData = {
+        isOwner: true,
+        gym: this.gym.name,
+      };
+      await this.$fire.firestore
+        .collection("users")
+        .where("email", "==", this.getUser.email)
+        .get()
+        .then((querySnapshot) => {
+          const docRef = querySnapshot.docs[0].ref;
+          docRef.update(trainerData).then(() => {
+            this.joinedSuccessfully();
+          });
+        })
+        .catch((error) => {
+          this.$toast.show({
+            type: "error",
+            title: "Error",
+            message: error.message,
+          });
+        });
+    },
+    joinedSuccessfully() {
+      this.$toast.show({
+        type: "success",
+        title: "Success",
+        message: "You have successfully create a gym",
+      });
+      setTimeout(() => {
+        this.$router.push("/dashboard");
+      }, 1000);
     },
   },
 });
