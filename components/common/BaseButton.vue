@@ -9,7 +9,7 @@
 <script lang="ts">
 import Vue from "vue";
 
-const THEMES = { BLANK: "blank", PRIMARY: "primary" };
+const THEMES = { BLANK: "blank", PRIMARY: "primary", RED: "red" };
 
 export default Vue.extend({
   name: "BaseButton",
@@ -56,6 +56,9 @@ export default Vue.extend({
 
   &--primary {
     @apply bg-gray-900 hover:bg-gray-700;
+  }
+  &--red {
+    @apply bg-red-900 hover:bg-red-700 text-white;
   }
 }
 </style>
