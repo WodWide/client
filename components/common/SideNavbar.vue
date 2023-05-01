@@ -28,12 +28,12 @@
       <div class="side-navbar__content pt-10">
         <div class="side-navbar__upper h-full">
           <BaseButton
-            v-for="(item, index) in upperMenu"
+            v-for="item in upperMenu"
             :key="item.src"
             v-tooltip.top="{ content: item.alt, classes: 'tooltip' }"
             :hover-color="hoverColor"
             theme="blank"
-            @click.native="upperMenuActions(index)"
+            @click.native="goToPage(item)"
           >
             <img :key="item.src" :src="item.src" :alt="item.alt" />
           </BaseButton>
@@ -59,9 +59,14 @@
 import Vue from "vue";
 import BaseButton from "@/components/common/BaseButton.vue";
 const upperMenu = [
-  { src: "/home-icon.svg", alt: "Home" },
-  { src: "/leaderboard-icon.svg", alt: "Leaderboard" },
-  { src: "/gym-icon.svg", alt: "Gym" },
+  { src: "/home-icon.svg", alt: "Home", location: "/dashboard" },
+  {
+    src: "/leaderboard-icon.svg",
+    alt: "Leaderboard",
+    location: "/leaderboard",
+  },
+  { src: "/gym-icon.svg", alt: "Gym", location: "/gym" },
+  { src: "/healthicons_exercise.svg", alt: "Wod", location: "/wod" },
 ];
 const lowerMenu = [
   { src: "/account-icon.svg", alt: "Account" },
@@ -88,8 +93,8 @@ export default Vue.extend({
     },
   },
   methods: {
-    gym(): void {
-      this.$router.push("/gym");
+    goToPage(object): void {
+      this.$router.push(object.location);
     },
     toggleMenu(): void {
       this.showMenu = !this.showMenu;
@@ -98,11 +103,6 @@ export default Vue.extend({
       if (index === 2) {
         this.$store.dispatch("user/resetData");
         this.$router.push("/");
-      }
-    },
-    upperMenuActions(index): void {
-      if (index === 2) {
-        this.gym();
       }
     },
   },
