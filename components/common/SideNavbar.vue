@@ -45,7 +45,7 @@
             v-tooltip.top="{ content: item.alt, classes: 'tooltip' }"
             :hover-color="hoverColor"
             theme="blank"
-            @click.native="logout(index)"
+            @click.native="index === 2 ? logout() : goToPage(item)"
           >
             <img :key="item.src" :src="item.src" :alt="item.alt" />
           </BaseButton>
@@ -69,9 +69,9 @@ const upperMenu = [
   { src: "/healthicons_exercise.svg", alt: "Wod", location: "/wod" },
 ];
 const lowerMenu = [
-  { src: "/account-icon.svg", alt: "Account" },
-  { src: "/settings-icon.svg", alt: "Settings" },
-  { src: "/logout-icon.svg", alt: "Logout" },
+  { src: "/account-icon.svg", alt: "Account", location: "/account" },
+  { src: "/settings-icon.svg", alt: "Settings", location: "/settings" },
+  { src: "/logout-icon.svg", alt: "Logout", location: "/logout" },
 ];
 export default Vue.extend({
   name: "SideNavbar",
@@ -99,11 +99,9 @@ export default Vue.extend({
     toggleMenu(): void {
       this.showMenu = !this.showMenu;
     },
-    logout(index): void {
-      if (index === 2) {
-        this.$store.dispatch("user/resetData");
-        this.$router.push("/");
-      }
+    logout(): void {
+      this.$store.dispatch("user/resetData");
+      this.$router.push("/");
     },
   },
 });
