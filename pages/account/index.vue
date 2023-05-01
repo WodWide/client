@@ -1,16 +1,17 @@
 <template>
-  <div>
-    <div>
+  <div class="h-full">
+    <div class="h-full">
       <SideNavbar />
-      <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <div class="bg-white shadow-xl sm:rounded-lg">
+      <div
+        class="flex items-center justify-center mx-auto py-6 sm:px-6 lg:px-8"
+      >
+        <div class="w-full md:w-1/2 bg-white shadow-xl sm:rounded-lg">
           <div class="p-6">
             <h1 class="text-2xl font-bold mb-4">Account Information</h1>
             <div
-              v-for="key in Object.keys(getUser)"
+              v-for="key in Object.keys(user)"
               :key="key"
-              class="mb-4 grid"
-              style="grid-template-columns: 200px 200px"
+              class="mb-4 grid grid-rows-2"
             >
               <label class="font-bold w-200 mb-2"
                 >{{ camelcaseToReadable(key) }}
@@ -20,7 +21,7 @@
                 :disabled="isInputDisabled(key)"
                 :class="{ 'bg-gray-300': isInputDisabled(key) }"
                 type="text"
-                class="shadow w-200 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                class="shadow appearance-none border rounded w-full md:w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               />
             </div>
             <button
