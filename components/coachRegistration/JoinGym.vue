@@ -127,6 +127,8 @@ export default Vue.extend({
         .then((querySnapshot) => {
           const docRef = querySnapshot.docs[0].ref;
           docRef.update(this.trainerData).then(() => {
+            console.log("Document successfully updated!");
+            this.setUserDetails(this.trainerData);
             this.joinedSuccessfully();
           });
         })
@@ -137,6 +139,9 @@ export default Vue.extend({
             message: error.message,
           });
         });
+    },
+    setUserDetails(userData: any) {
+      this.$store.dispatch("user/updateUser", userData);
     },
     joinedSuccessfully() {
       this.$toast.show({

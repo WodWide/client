@@ -262,6 +262,7 @@ export default Vue.extend({
         },
         trainers: [],
         members: [],
+        wod: {},
       };
       this.createGym(gymData);
     },
@@ -270,8 +271,26 @@ export default Vue.extend({
         .collection("gyms")
         .add(gymData)
         .then(() => {
+          this.createDashboard();
           this.updateTrainer();
         })
+        .catch((error) => {
+          this.$toast.show({
+            type: "error",
+            title: "Error",
+            message: error.message,
+          });
+        });
+    },
+    createDashboard() {
+      const dashboardData = {
+        gym: this.gym.name,
+        items: [],
+      };
+      this.$fire.firestore
+        .collection("leaderboard")
+        .add(dashboardData)
+        .then()
         .catch((error) => {
           this.$toast.show({
             type: "error",
@@ -292,6 +311,7 @@ export default Vue.extend({
         .then((querySnapshot) => {
           const docRef = querySnapshot.docs[0].ref;
           docRef.update(trainerData).then(() => {
+            this.setUserDetails(trainerData);
             this.joinedSuccessfully();
           });
         })
@@ -302,6 +322,9 @@ export default Vue.extend({
             message: error.message,
           });
         });
+    },
+    setUserDetails(userData: any) {
+      this.$store.dispatch("user/updateUser", userData);
     },
     joinedSuccessfully() {
       this.$toast.show({

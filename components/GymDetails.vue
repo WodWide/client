@@ -27,10 +27,13 @@
     <div class="gym-details__wod">
       <h1 class="font-bold">WOD</h1>
       <hr class="gym-details--line m-auto" />
-      <div v-html="$md.render(content)"></div>
+      <template v-if="Object.keys(wod).length !== 0">
+        {{ wod.date }}
+        <div v-html="$md.render(wod.description)"></div>
+      </template>
       <EditWod
         v-if="isCoach || isOwner"
-        v-model="content"
+        v-model="wod"
         :gym-name="gym.name"
         :button-text="buttonText"
       />
@@ -70,11 +73,17 @@ export default Vue.extend({
   },
   data() {
     return {
-      content: "",
+      wod: {
+        date: "",
+        description: "",
+      },
       buttonText: "Create WOD",
     };
   },
   computed: {
+    isMobile(): boolean {
+      return this.$breakpoints.sMd;
+    },
     getUser(): any {
       return this.$store.getters["user/user"];
     },
@@ -86,7 +95,7 @@ export default Vue.extend({
     },
   },
   watch: {
-    content: {
+    wod: {
       handler(newValue) {
         if (newValue !== "") {
           this.buttonText = "Update WOD";
@@ -107,9 +116,8 @@ export default Vue.extend({
         .get()
         .then((querySnapshot) => {
           const wod = querySnapshot.docs[0].data().wod;
-          console.log(wod);
-          if (wod && wod !== "") {
-            this.content = wod;
+          if (Object.keys(wod).length !== 0) {
+            this.wod = wod;
           }
         })
         .catch((error) => {
@@ -127,10 +135,12 @@ export default Vue.extend({
 .gym-details {
   display: flex;
   margin-top: 4em;
-  margin-left: 7em;
   padding: 2em;
   border: 2px solid black;
   border-radius: 2em;
+  @screen lg {
+    margin-left: 7em;
+  }
   &__left {
     @apply w-1/3;
   }

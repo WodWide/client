@@ -18,6 +18,10 @@ export const mutations = {
   SET_USER(state: { user: any }, user: any) {
     state.user = { ...user };
   },
+  UPDATE_USER(state: { user: any }, userData: any) {
+    console.log("userData", userData);
+    state.user = { ...state.user, ...userData };
+  },
   RESET_DATA(state: { token: string; authStatus: boolean; user: any }) {
     state.token = "";
     state.authStatus = false;
@@ -31,6 +35,10 @@ export const actions = {
   },
   setUser({ commit }: any, user: any) {
     commit("SET_USER", user);
+  },
+  updateUser({ commit }: any, userData: any) {
+    console.log("userData", userData);
+    commit("UPDATE_USER", userData);
   },
   resetData({ commit }: any) {
     commit("RESET_DATA");
