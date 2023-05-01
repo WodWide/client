@@ -56,6 +56,18 @@ export default Vue.extend({
       },
     };
   },
+  head() {
+    return {
+      title: "Account",
+      meta: [
+        {
+          hid: "account",
+          name: "Account",
+          content: "Account page of WodWide. Update your account's information",
+        },
+      ],
+    };
+  },
   computed: {
     getUser(): any {
       return this.$store.getters["user/user"];
