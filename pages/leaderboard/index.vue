@@ -153,11 +153,6 @@ export default Vue.extend({
       return this.$store.getters["leaderboard/leaderboard"];
     },
     leaderboardItems(): any {
-      // const arr = [...this.$store.getters["leaderboard/leaderboard"].items];
-      // this.submited && arr.push(this.entryData);
-      //
-      // return arr.sort((a, b) => a.score - b.score);
-
       const leaderboard =
         this.$store.getters["leaderboard/leaderboard"]?.items?.slice() || [];
       if (this.submited) {
