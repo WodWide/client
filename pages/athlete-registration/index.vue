@@ -47,7 +47,7 @@ export default Vue.extend({
     selectedGym: object | null;
     isResult: boolean;
     error: string;
-    trainerData: object;
+    athlete: object;
   } {
     return {
       gyms: [],
@@ -55,7 +55,7 @@ export default Vue.extend({
       selectedGym: null,
       isResult: false,
       error: "",
-      trainerData: () => {},
+      athlete: () => {},
     };
   },
   computed: {
@@ -78,7 +78,7 @@ export default Vue.extend({
   },
   methods: {
     joinGym(selectedGym) {
-      this.trainerData = {
+      this.athlete = {
         isAthlete: true,
         gym: selectedGym.name,
       };
@@ -136,7 +136,8 @@ export default Vue.extend({
         .get()
         .then((querySnapshot) => {
           const docRef = querySnapshot.docs[0].ref;
-          docRef.update(this.trainerData).then(() => {
+          docRef.update(this.athlete).then(() => {
+            this.setUserDetails(this.athlete);
             this.joinedSuccessfully();
           });
         })
@@ -147,6 +148,9 @@ export default Vue.extend({
             message: error.message,
           });
         });
+    },
+    setUserDetails(userData: any) {
+      this.$store.dispatch("user/updateUser", userData);
     },
     joinedSuccessfully() {
       this.$toast.show({

@@ -15,7 +15,7 @@
     </BaseButton>
     <Modal v-if="modalVisible" :visible="modalVisible" @close="closeModal">
       <h2 class="font-bold p-4">WOD</h2>
-      <div id="index">
+      <div>
         <TuiEditor
           v-model="content"
           mode="markdown"
@@ -70,9 +70,6 @@ export default {
       this.modalVisible = false;
     },
     submitForm() {
-      const currentDate = new Date();
-      // const formData = new FormData();
-      // formData.append("content", this.content);
       this.sanitizedHTML !== ""
         ? this.updateWod()
         : this.$toast.show({
@@ -80,10 +77,17 @@ export default {
             title: "Error",
             message: "WOD cannot be empty",
           });
-      console.log(currentDate);
-      console.log(this.sanitizedHTML);
     },
     async updateWod() {
+      const myDate = new Date();
+      const month = myDate.getMonth() + 1;
+      const day = myDate.getDate();
+      const year = myDate.getFullYear();
+      const formattedDate = `${month}/${day}/${year}`;
+      const wod = {
+        description: this.sanitizedHTML,
+        date: formattedDate,
+      };
       await this.$fire.firestore
         .collection("gyms")
         .where("name", "==", this.gymName)
@@ -92,10 +96,10 @@ export default {
           const docRef = querySnapshot.docs[0].ref;
           docRef
             .update({
-              wod: this.sanitizedHTML,
+              wod,
             })
             .then(() => {
-              this.$emit("input", this.sanitizedHTML);
+              this.$emit("input", wod);
               this.closeModal();
               this.$toast.show({
                 type: "success",

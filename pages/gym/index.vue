@@ -84,9 +84,6 @@ export default Vue.extend({
     this.fetchUser();
   },
   methods: {
-    setUserDetails(user: any) {
-      this.$store.dispatch("user/setUser", user);
-    },
     redirectToCoachPage() {
       this.$router.push("/coach-registration");
     },
@@ -118,8 +115,6 @@ export default Vue.extend({
         .then((querySnapshot) => {
           const userDoc = querySnapshot.docs[0];
           const gym = userDoc.data().gym;
-          const userDetails = userDoc.data();
-          this.setUserDetails(userDetails);
           if (gym) this.fetchGym(gym);
           this.loading = false;
         })
