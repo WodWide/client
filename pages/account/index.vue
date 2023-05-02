@@ -54,6 +54,7 @@ export default Vue.extend({
         age: "",
         height: "",
         weight: "",
+        gym: "",
       },
     };
   },
@@ -78,7 +79,18 @@ export default Vue.extend({
     },
   },
   created() {
-    this.user = { ...this.getUser };
+    const { firstName, lastName, username, email, age, height, weight, gym } =
+      this.getUser;
+    this.user = {
+      firstName,
+      lastName,
+      username,
+      email,
+      age,
+      height,
+      weight,
+      gym,
+    };
   },
   methods: {
     isInputDisabled(key) {
