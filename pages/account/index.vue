@@ -11,7 +11,8 @@
             <div
               v-for="key in Object.keys(user)"
               :key="key"
-              class="mb-4 grid grid-rows-2"
+              class="mb-4 grid"
+              :class="isMobile ? 'grid-rows-2' : 'grid-cols-2'"
             >
               <label class="font-bold w-200 mb-2"
                 >{{ camelcaseToReadable(key) }}
@@ -72,13 +73,16 @@ export default Vue.extend({
     getUser(): any {
       return this.$store.getters["user/user"];
     },
+    isMobile(): boolean {
+      return this.$breakpoints.sMd;
+    },
   },
   created() {
     this.user = { ...this.getUser };
   },
   methods: {
     isInputDisabled(key) {
-      return key === "email";
+      return ["email", "gym"].includes(key);
     },
     camelcaseToReadable(str: string) {
       return str
