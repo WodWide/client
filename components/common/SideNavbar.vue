@@ -28,24 +28,12 @@
       <div class="side-navbar__content pt-10">
         <div class="side-navbar__upper h-full">
           <BaseButton
-            v-for="item in upperMenu"
+            v-for="(item, index) in menu"
             :key="item.src"
             v-tooltip.top="{ content: item.alt, classes: 'tooltip' }"
             :hover-color="hoverColor"
             theme="blank"
-            @click.native="goToPage(item)"
-          >
-            <img :key="item.src" :src="item.src" :alt="item.alt" />
-          </BaseButton>
-        </div>
-        <div class="side-navbar__lower w-24 mb-8">
-          <BaseButton
-            v-for="(item, index) in lowerMenu"
-            :key="item.src"
-            v-tooltip.top="{ content: item.alt, classes: 'tooltip' }"
-            :hover-color="hoverColor"
-            theme="blank"
-            @click.native="index === 2 ? logout() : goToPage(item)"
+            @click.native="index === 7 ? logout() : goToPage(item)"
           >
             <img
               :key="item.src"
@@ -63,7 +51,7 @@
 <script lang="ts">
 import Vue from "vue";
 import BaseButton from "@/components/common/BaseButton.vue";
-const upperMenu = [
+const menu = [
   { src: "/home-icon.svg", alt: "Home", location: "/dashboard" },
   {
     src: "/leaderboard-icon.svg",
@@ -72,8 +60,6 @@ const upperMenu = [
   },
   { src: "/gym-icon.svg", alt: "Gym", location: "/gym" },
   { src: "/healthicons_exercise.svg", alt: "Wod", location: "/wod" },
-];
-const lowerMenu = [
   { src: "/account-icon.svg", alt: "Account", location: "/account" },
   { src: "/glossary.svg", alt: "Glossary", location: "/glossary" },
   { src: "/settings-icon.svg", alt: "Settings", location: "/settings" },
@@ -85,8 +71,7 @@ export default Vue.extend({
   data() {
     return {
       hoverColor: "bg-gray-300",
-      upperMenu,
-      lowerMenu,
+      menu,
       showMenu: false,
     };
   },
@@ -139,7 +124,6 @@ export default Vue.extend({
     font-size: 1.5em;
   }
   &__lower {
-    position: absolute;
     bottom: 0;
   }
 }
