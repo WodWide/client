@@ -47,7 +47,12 @@
             theme="blank"
             @click.native="index === 2 ? logout() : goToPage(item)"
           >
-            <img :key="item.src" :src="item.src" :alt="item.alt" />
+            <img
+              :key="item.src"
+              class="w-8 h-8"
+              :src="item.src"
+              :alt="item.alt"
+            />
           </BaseButton>
         </div>
       </div>
@@ -70,6 +75,7 @@ const upperMenu = [
 ];
 const lowerMenu = [
   { src: "/account-icon.svg", alt: "Account", location: "/account" },
+  { src: "/glossary.svg", alt: "Glossary", location: "/glossary" },
   { src: "/settings-icon.svg", alt: "Settings", location: "/settings" },
   { src: "/logout-icon.svg", alt: "Logout", location: "/logout" },
 ];
