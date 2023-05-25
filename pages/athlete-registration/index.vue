@@ -114,7 +114,7 @@ export default Vue.extend({
                 });
             } else {
               this.$toast.show({
-                type: "error",
+                type: "danger",
                 title: "Error",
                 message: "You are already a member of this gym",
               });
@@ -123,7 +123,7 @@ export default Vue.extend({
         })
         .catch((error) => {
           this.$toast.show({
-            type: "error",
+            type: "danger",
             title: "Error",
             message: error.message,
           });
@@ -143,7 +143,7 @@ export default Vue.extend({
         })
         .catch((error) => {
           this.$toast.show({
-            type: "error",
+            type: "danger",
             title: "Error",
             message: error.message,
           });
@@ -175,7 +175,7 @@ export default Vue.extend({
         this.isResult = true;
       } catch (error) {
         this.$toast.show({
-          type: "error",
+          type: "danger",
           title: "Error",
           message: error,
         });
