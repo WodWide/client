@@ -60,6 +60,11 @@ const menu = [
   },
   { src: "/gym-icon.svg", alt: "Gym", location: "/gym" },
   { src: "/healthicons_exercise.svg", alt: "Wod", location: "/wod" },
+  {
+    src: "/upload-icon.svg",
+    alt: "AI-submission",
+    location: "/video-submission",
+  },
   { src: "/account-icon.svg", alt: "Account", location: "/account" },
   { src: "/glossary.svg", alt: "Glossary", location: "/glossary" },
   { src: "/settings-icon.svg", alt: "Settings", location: "/settings" },
