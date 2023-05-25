@@ -19,7 +19,7 @@
           v-model="wodType"
           @update:wodType="(newValue) => (wodType = newValue)"
         />
-        <DropDownItems
+        <Exercises
           v-for="index in exercises"
           :key="index"
           v-model="exerciseList"
@@ -116,12 +116,12 @@
 import Vue from "vue";
 import SideNavbar from "~/components/common/SideNavbar.vue";
 import BaseButton from "~/components/common/BaseButton.vue";
-import DropDownItems from "~/components/common/DropDownItems.vue";
+import Exercises from "~/components/common/Exercises.vue";
 import WodType from "~/components/common/WodType.vue";
 import Modal from "~/components/common/Modal.vue";
 
 export default Vue.extend({
-  components: { SideNavbar, BaseButton, DropDownItems, WodType, Modal },
+  components: { SideNavbar, BaseButton, Exercises, WodType, Modal },
   data() {
     return {
       loading: false,
