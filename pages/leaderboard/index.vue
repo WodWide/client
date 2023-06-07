@@ -281,7 +281,7 @@ export default Vue.extend({
         })
         .catch((error) => {
           this.$toast.show({
-            type: "error",
+            type: "danger",
             title: "Error",
             message: error.message,
           });

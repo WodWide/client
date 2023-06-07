@@ -43,7 +43,7 @@ export default Vue.extend({
 </script>
 <style lang="scss">
 .base-button {
-  @apply text-white font-bold py-3 px-8 rounded-lg;
+  @apply font-bold py-3 px-8 rounded-lg;
 
   &:focus {
     outline: 2px solid transparent;
@@ -55,7 +55,7 @@ export default Vue.extend({
   }
 
   &--primary {
-    @apply bg-gray-900 hover:bg-gray-700;
+    @apply bg-gray-900 hover:bg-gray-700 text-white;
   }
   &--red {
     @apply bg-red-900 hover:bg-red-700 text-white;

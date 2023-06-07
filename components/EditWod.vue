@@ -73,7 +73,7 @@ export default {
       this.sanitizedHTML !== ""
         ? this.updateWod()
         : this.$toast.show({
-            type: "error",
+            type: "danger",
             title: "Error",
             message: "WOD cannot be empty",
           });
@@ -109,7 +109,7 @@ export default {
             })
             .catch((error) => {
               this.$toast.show({
-                type: "error",
+                type: "danger",
                 title: "Error",
                 message: error.message,
               });
