@@ -25,9 +25,6 @@
             <nuxt-link to="/about">
               <span class="index-page__nav-item">About</span>
             </nuxt-link>
-            <nuxt-link to="/pricing">
-              <span class="index-page__nav-item">Pricing</span>
-            </nuxt-link>
             <nuxt-link to="/contact">
               <span class="index-page__nav-item">Contact</span>
             </nuxt-link>
