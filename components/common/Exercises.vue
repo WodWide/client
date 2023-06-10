@@ -14,7 +14,7 @@
         </button>
       </template>
       <template #body>
-        <ul>
+        <ul class="p-4">
           <li v-for="(exercise, index) in exercises" :key="index">
             <button @click="selectExercise(exercise)">
               {{ exercise }}
