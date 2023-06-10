@@ -33,7 +33,9 @@
             v-tooltip.top="{ content: item.alt, classes: 'tooltip' }"
             :hover-color="hoverColor"
             theme="blank"
-            @click.native="index === 7 ? logout() : goToPage(item)"
+            @click.native="
+              index === menu.length - 1 ? logout() : goToPage(item)
+            "
           >
             <img
               :key="item.src"
