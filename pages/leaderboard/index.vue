@@ -29,7 +29,7 @@
             v-html="$md.render(currentWod)"
           ></div>
           <template v-if="leaderboardItems && leaderboardItems.length > 0">
-            <div class="flex flex-col space-y-4 mt-10 max-w-lg mx-auto">
+            <div class="flex flex-col space-y-4 mt-10 max-w-xl mx-auto">
               <div
                 class="flex items-center justify-between bg-gray-100 py-2 px-4 rounded-lg"
               >

@@ -15,7 +15,7 @@
         </button>
       </template>
       <template #body>
-        <ul>
+        <ul class="p-4">
           <li v-for="(type, index) in types" :key="index">
             <button @click="selectType(type)">
               {{ type.name }}
@@ -55,7 +55,6 @@ export default {
         type: Number,
       },
       types: [
-        { name: "AMRAP", key: "amrap", time: null },
         { name: "For Time", key: "for_time", rounds: null },
         { name: "Count Reps", key: "count" },
       ],
@@ -65,8 +64,6 @@ export default {
   computed: {
     valueBasedOnType() {
       switch (this.selectedType?.key) {
-        case "amrap":
-          return "Time";
         case "for_time":
           return "Rounds";
         case "count":

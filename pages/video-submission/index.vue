@@ -197,15 +197,6 @@ export default Vue.extend({
           message: "Please select a type",
         });
       } else if (
-        this.wodType.key === "amrap" &&
-        (this.wodType as any)?.time <= 0
-      ) {
-        this.$toast.show({
-          type: "danger",
-          title: "Error",
-          message: "Please define time",
-        });
-      } else if (
         this.wodType.key === "for_time" &&
         (this.wodType as any)?.rounds < 0
       ) {
@@ -284,12 +275,9 @@ export default Vue.extend({
       } else {
         body = {
           type: this.wodType.key,
-          ...((this.wodType.key === "amrap" && {
-            time: (this.wodType as any).time,
+          ...((this.wodType.key === "for_time" && {
+            rounds: (this.wodType as any).rounds,
           }) ||
-            (this.wodType.key === "for_time" && {
-              rounds: (this.wodType as any).rounds,
-            }) ||
             {}),
           total_time: this.timeCap && parseFloat(this.timeCap),
           exercises: this.exerciseList,
